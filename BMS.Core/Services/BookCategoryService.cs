@@ -24,11 +24,11 @@ namespace BMS.Domain.Services
             return await _context.BookCategories.FirstOrDefaultAsync(c => c.CategoryName == categoryName);
         }
 
-        public async Task<BookCategory> AddlBookCategoryAsync(BookCategory bookCategory)
+        public async Task<BookCategory> AddBookCategoryAsync(BookCategory bookCategory)
         {
-            var existingCategory = await GetCategoryByCategoryNameAsync(bookCategory.CategoryName);
+            var isBookCategoryExists = await GetCategoryByCategoryNameAsync(bookCategory.CategoryName);
 
-            if (existingCategory != null)
+            if (isBookCategoryExists != null)
             {
                 return null;
             }
@@ -37,6 +37,27 @@ namespace BMS.Domain.Services
             await _context.SaveChangesAsync();
 
             return bookCategory;
+        }
+
+        public async Task<BookCategory> GetCategoryByCategoryByIdAsync(Guid categoryId)
+        {
+            return await _context.BookCategories.FindAsync(categoryId);
+        }
+
+        public async Task<BookCategory> UpdateBookCategoryAsync(BookCategory bookCategory)
+        {
+            var isBookCategoryExists = await GetCategoryByCategoryByIdAsync(bookCategory.CategoryId);
+            
+            if (isBookCategoryExists == null)
+            {
+                return null;
+            }
+
+            isBookCategoryExists.CategoryName = bookCategory.CategoryName;
+
+            _context.Update(isBookCategoryExists);
+            await _context.SaveChangesAsync();
+            return isBookCategoryExists;
         }
     }
 }

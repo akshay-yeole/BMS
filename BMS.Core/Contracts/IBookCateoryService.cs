@@ -6,6 +6,8 @@ namespace BMS.Domain.Contracts
     {
         Task<IEnumerable<BookCategory>> GetAllBookCategoriesAsync();
         Task<BookCategory> GetCategoryByCategoryNameAsync(string categoryName);
-        Task<BookCategory> AddlBookCategoryAsync(BookCategory bookCategory);
+        Task<BookCategory> AddBookCategoryAsync(BookCategory bookCategory);
+        Task<BookCategory> GetCategoryByCategoryByIdAsync(Guid categoryId);
+        Task<BookCategory> UpdateBookCategoryAsync(BookCategory bookCategory);
     }
 }
