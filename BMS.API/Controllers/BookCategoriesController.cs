@@ -60,5 +60,21 @@ namespace BMS.API.Controllers
 
             return Ok(result);
         }
+
+        [HttpDelete("")]
+        [ProducesResponseType(typeof(IEnumerable<BookCategory>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> DeleteBookCategoryAsync(Guid categoryId)
+        {
+            var result = await _bookCateoryService.DeleteBookCategoryAsync(categoryId);
+            
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
     }
 }
