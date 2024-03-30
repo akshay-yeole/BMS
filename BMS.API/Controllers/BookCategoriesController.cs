@@ -33,6 +33,7 @@ namespace BMS.API.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(IEnumerable<BookCategory>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddBookCategoryAsync(BookCategory bookCategory) {
             var result = await _bookCateoryService.AddBookCategoryAsync(bookCategory);
