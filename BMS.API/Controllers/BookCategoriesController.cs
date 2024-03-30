@@ -31,7 +31,7 @@ namespace BMS.API.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(IEnumerable<BookCategory>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BookCategory), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
@@ -47,7 +47,7 @@ namespace BMS.API.Controllers
         }
 
         [HttpPut]
-        [ProducesResponseType(typeof(IEnumerable<BookCategory>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BookCategory), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateBookCategoryAsync(BookCategory bookCategory)
@@ -63,7 +63,7 @@ namespace BMS.API.Controllers
         }
 
         [HttpDelete("")]
-        [ProducesResponseType(typeof(IEnumerable<BookCategory>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BookCategory), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteBookCategoryAsync(Guid categoryId)
