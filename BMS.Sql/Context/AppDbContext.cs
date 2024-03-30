@@ -9,6 +9,7 @@ namespace BMS.Sql.Context
         public AppDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<BookCategory> BookCategories { get; set; }
+        public DbSet<Book> Books { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

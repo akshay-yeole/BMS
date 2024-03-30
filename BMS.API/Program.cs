@@ -1,6 +1,5 @@
 using BMS.Sql;
 using BMS.Core;
-using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,12 +8,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCoreService();
 builder.Services.AddSqlService(builder.Configuration);
-
-builder.Services.AddFluentValidation(conf =>
-{
-    conf.RegisterValidatorsFromAssembly(typeof(Program).Assembly);
-    conf.AutomaticValidationEnabled = false;
-});
 
 var app = builder.Build();
 

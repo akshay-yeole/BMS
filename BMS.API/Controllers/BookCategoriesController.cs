@@ -15,6 +15,7 @@ namespace BMS.API.Controllers
         {
             _bookCateoryService = bookCateoryService;
         }
+        
         [HttpGet("")]
         [ProducesResponseType(typeof(IEnumerable<BookCategory>),StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
@@ -27,6 +28,21 @@ namespace BMS.API.Controllers
                 return NotFound();
             }
             return Ok(result);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(IEnumerable<BookCategory>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> AddBookCategoryAsync(BookCategory bookCategory) {
+            var result = await _bookCateoryService.AddlBookCategoryAsync(bookCategory);
+
+            if (result == null)
+            {
+                return Conflict();
+            }
+
+           return Ok(result);
         }
     }
 }
