@@ -2,7 +2,7 @@
 
 namespace BMS.Domain.Contracts
 {
-    public interface IBookCateoryService
+    public interface IBookCategoryService
     {
         Task<IEnumerable<BookCategory>> GetAllBookCategoriesAsync();
         BookCategory GetCategoryByCategoryById(Guid categoryId);
