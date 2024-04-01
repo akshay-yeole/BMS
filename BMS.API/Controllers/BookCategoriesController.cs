@@ -45,13 +45,13 @@ namespace BMS.API.Controllers
             return Ok(result);
         }
 
-        [HttpPut]
+        [HttpPut("{categoryId}")]
         [ProducesResponseType(typeof(BookCategoryDto), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UpdateBookCategoryAsync(BookCategoryDto bookCategoryDto)
+        public async Task<IActionResult> UpdateBookCategoryAsync(BookCategoryDto bookCategoryDto, Guid categoryId)
         {
-            await _bookCateoryService.UpdateBookCategoryAsync(bookCategoryDto);
+            await _bookCateoryService.UpdateBookCategoryAsync(bookCategoryDto, categoryId);
             return Ok();
         }
 

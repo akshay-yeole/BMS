@@ -24,25 +24,28 @@ namespace BMS.Domain.Services
             return _mapper.Map<IEnumerable<BookCategoryDto>>(bookCategories);
         }
 
-        public async Task<BookCategoryDto> AddBookCategoryAsync(BookCategoryDto bookCategoryDto)
+        public BookCategory GetBookCategoryByName(string categoryName)
         {
-            var isBookCategoryExists = await _context.BookCategories.FindAsync(bookCategoryDto.CategoryName);
-            if (isBookCategoryExists != null)
-                throw new Exception("Product not found");
-            isBookCategoryExists.CategoryId = Guid.NewGuid();
-            await _context.BookCategories.AddAsync(isBookCategoryExists);
-            await _context.SaveChangesAsync();
-            return _mapper.Map<BookCategoryDto>(isBookCategoryExists);
+            return _context.BookCategories.FirstOrDefault(x => x.CategoryName == categoryName);
         }
 
-        public async Task UpdateBookCategoryAsync(BookCategoryDto bookCategoryDto)
+        public async Task<BookCategoryDto> AddBookCategoryAsync(BookCategoryDto bookCategoryDto)
         {
-            var isBookCategoryExists = await _context.BookCategories.FindAsync(bookCategoryDto.CategoryName);
-            if (isBookCategoryExists == null)
-            {
+            var isBookCategoryExists = GetBookCategoryByName(bookCategoryDto.CategoryName);
+            if (isBookCategoryExists != null)
                 throw new Exception("Product not found");
-            }
+            var bookCategory = _mapper.Map<BookCategory>(bookCategoryDto);
+            bookCategory.CategoryId = Guid.NewGuid();
+            await _context.BookCategories.AddAsync(bookCategory);
+            await _context.SaveChangesAsync();
+            return _mapper.Map<BookCategoryDto>(bookCategory);
+        }
 
+        public async Task UpdateBookCategoryAsync(BookCategoryDto bookCategoryDto, Guid categoryId)
+        {
+            var isBookCategoryExists = await _context.BookCategories.FindAsync(categoryId);
+            if (isBookCategoryExists == null)
+                throw new Exception("Product not found");
             _mapper.Map(bookCategoryDto, isBookCategoryExists);
             await _context.SaveChangesAsync();
         }
