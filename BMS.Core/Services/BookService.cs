@@ -23,9 +23,15 @@ namespace BMS.Core.Services
             var books = await _context.Books.ToListAsync();
             return _mapper.Map<IEnumerable<BookDto>>(books);
         }
+
+        public Book GetBookByName(string bookName)
+        {
+            return _context.Books.FirstOrDefault(x => x.BookName == bookName);
+        }
+
         public async Task<Book> AddBookAsync(BookDto bookDto)
         {
-            var isBookExists = await _context.Books.FindAsync(bookDto.BookName);
+            var isBookExists = GetBookByName(bookDto.BookName);
 
             if (isBookExists != null)
                 return null;
@@ -42,8 +48,7 @@ namespace BMS.Core.Services
             var isBookExists = await _context.Books.FindAsync(bookCode);
             if (isBookExists == null)
                 throw new Exception();
-            var book = _mapper.Map<Book>(bookDto);
-            _context.Books.Update(book);
+            _mapper.Map(bookDto, isBookExists);
             await _context.SaveChangesAsync();
         }
 
