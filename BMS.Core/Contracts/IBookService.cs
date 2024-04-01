@@ -5,11 +5,9 @@ namespace BMS.Core.Contracts
 {
     public interface IBookService
     {
-        Task<IEnumerable<Book>> GetAllBooksAsync();
-        Task<Book> GetBookByIdAsync(Guid bookId);
-        Task<Book> GetBookByNameAsync(string bookName);
+        Task<IEnumerable<BookDto>> GetAllBooksAsync();
         Task<Book> AddBookAsync(BookDto bookDto);
-        Task<Book> UpdateBookAsync(BookDto bookDto);
-        Task<Book> DeleteBookAsync(Guid bookId);
+        Task UpdateBookAsync(BookDto bookDto, Guid bookCode);
+        Task DeleteBookAsync(Guid bookCode);
     }
 }

@@ -1,14 +1,12 @@
-﻿using BMS.Domain.Models;
+﻿using BMS.Domain.Dto;
 
 namespace BMS.Domain.Contracts
 {
     public interface IBookCateoryService
     {
-        Task<IEnumerable<BookCategory>> GetAllBookCategoriesAsync();
-        BookCategory GetCategoryByCategoryById(Guid categoryId);
-        BookCategory GetCategoryByCategoryName(string categoryName);
-        Task<BookCategory> AddBookCategoryAsync(BookCategory bookCategory);
-        Task<BookCategory> UpdateBookCategoryAsync(BookCategory bookCategory);
-        Task<BookCategory> DeleteBookCategoryAsync(Guid categoryId);
+        Task<IEnumerable<BookCategoryDto>> GetAllBookCategoriesAsync();
+        Task<BookCategoryDto> AddBookCategoryAsync(BookCategoryDto bookCategoryDto);
+        Task UpdateBookCategoryAsync(BookCategoryDto bookCategoryDto);
+        Task DeleteBookCategoryAsync(Guid categoryId);
     }
 }

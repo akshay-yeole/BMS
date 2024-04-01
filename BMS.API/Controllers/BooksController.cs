@@ -1,7 +1,7 @@
-﻿using BMS.Core.Contracts;
+﻿using AutoMapper;
+using BMS.Core.Contracts;
 using BMS.Domain.Dto;
 using BMS.Domain.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BMS.API.Controllers
@@ -10,25 +10,24 @@ namespace BMS.API.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
+        private readonly IMapper _mapper;
         private readonly IBookService _bookService;
 
-        public BooksController(IBookService bookService)
+        public BooksController(IBookService bookService, IMapper mapper)
         {
             _bookService = bookService;
+            _mapper = mapper;
         }
 
         [HttpGet("")]
-        [ProducesResponseType(typeof(IEnumerable<Book>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<BookDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAllBooksAsync() { 
+        public async Task<IActionResult> GetAllBooksAsync()
+        {
             var books = await _bookService.GetAllBooksAsync();
-            
             if (!books.Any())
-            {
                 return NotFound();
-            }
-
             return Ok(books);
         }
 
@@ -40,46 +39,30 @@ namespace BMS.API.Controllers
         public async Task<IActionResult> AddBookCategoryAsync(BookDto bookDto)
         {
             var result = await _bookService.AddBookAsync(bookDto);
-
             if (result == null)
-            {
                 return Conflict();
-            }
-
             return Ok(result);
         }
 
-        [HttpPut]
+        [HttpPut("{bookCode}")]
         [ProducesResponseType(typeof(Book), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UpdateBookCategoryAsync(BookDto bookDto)
+        public async Task<IActionResult> UpdateBookCategoryAsync(BookDto bookDto, Guid bookCode)
         {
-            var result = await _bookService.UpdateBookAsync(bookDto);
-
-            if (result == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(result);
+             await _bookService.UpdateBookAsync(bookDto, bookCode);
+            return Ok();
         }
 
-        [HttpDelete("")]
+        [HttpDelete("{bookId}")]
         [ProducesResponseType(typeof(Book), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteBookCategoryAsync(Guid bookId)
         {
-            var result = await _bookService.DeleteBookAsync(bookId);
-
-            if (result == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(result);
+            await _bookService.DeleteBookAsync(bookId);
+            return Ok();
         }
     }
 }
