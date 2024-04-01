@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "ee1e80e5-cb39-4ab2-a9cd-285fa5dfecab",
+		"name": "BMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "32795243"
+	},
+	"item": [
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Get All Books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://localhost:7140/api/Books/"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookName\": \"string\",\r\n  \"copiesAvailable\": true,\r\n  \"author\": \"string\",\r\n  \"categoryid\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://localhost:7140/api/Books"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Book",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "https://localhost:7140/api/Books/{{bookId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Book",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookName\": \"string\",\r\n  \"copiesAvailable\": true,\r\n  \"author\": \"string\",\r\n  \"categoryid\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://localhost:7140/api/Books/{{bookId}}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BookCategory",
+			"item": [
+				{
+					"name": "Get All BookCategory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://localhost:7140/api/BookCategories"
+					},
+					"response": []
+				},
+				{
+					"name": "Add BookCategory",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"categoryName\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://localhost:7140/api/BookCategories"
+					},
+					"response": []
+				},
+				{
+					"name": "Update BookCategory",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"categoryName\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://localhost:7140/api/BookCategories/{{categoryId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete BookCategory",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "https://localhost:7140/api/BookCategories/{{categoryId}}"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

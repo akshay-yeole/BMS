@@ -55,13 +55,13 @@ namespace BMS.API.Controllers
             return Ok();
         }
 
-        [HttpDelete("{bookId}")]
+        [HttpDelete("{bookCode}")]
         [ProducesResponseType(typeof(Book), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> DeleteBookCategoryAsync(Guid bookId)
+        public async Task<IActionResult> DeleteBookCategoryAsync(Guid bookCode)
         {
-            await _bookService.DeleteBookAsync(bookId);
+            await _bookService.DeleteBookAsync(bookCode);
             return Ok();
         }
     }

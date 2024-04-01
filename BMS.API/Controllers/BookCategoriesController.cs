@@ -55,7 +55,7 @@ namespace BMS.API.Controllers
             return Ok();
         }
 
-        [HttpDelete("")]
+        [HttpDelete("{categoryId}")]
         [ProducesResponseType(typeof(BookCategory), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
