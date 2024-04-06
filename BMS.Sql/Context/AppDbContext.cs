@@ -11,7 +11,7 @@ namespace BMS.Sql.Context
         public DbSet<BookCategory> BookCategories { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Student> Students { get; set; }
-        public DbSet<LibraryTransaction> libraryTransactions { get; set; }
+        public DbSet<LibraryTransaction> LibraryTransactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

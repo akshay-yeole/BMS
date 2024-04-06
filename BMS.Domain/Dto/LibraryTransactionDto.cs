@@ -1,10 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BMS.Domain.Models
+﻿namespace BMS.Domain.Dto
 {
-    public class LibraryTransaction
+    public class LibraryTransactionDto
     {
-        [Key]
         public Guid Id { get; set; }
         public Guid BookCode { get; set; }
         public Guid StudentId { get; set; }
