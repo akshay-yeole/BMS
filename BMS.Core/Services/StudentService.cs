@@ -50,5 +50,13 @@ namespace BMS.Core.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task UpdateStudentAsync(StudentDto studentDto, Guid studentId)
+        {
+            var isStudentExists = await _context.Students.Where(x => x.Id == studentId).FirstOrDefaultAsync();
+            if (isStudentExists == null)
+                throw new Exception();
+            _mapper.Map(studentDto, isStudentExists);
+            await _context.SaveChangesAsync();
+        }
     }
 }

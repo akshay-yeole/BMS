@@ -46,6 +46,17 @@ namespace BMS.API.Controllers
             return Ok(result);
         }
 
+        [HttpPut("{studentId}")]
+        [ProducesResponseType(typeof(Student), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> UpdateStudentAsync(StudentDto studentDto, Guid studentId)
+        {
+            await _studentService.UpdateStudentAsync(studentDto, studentId);
+            return Ok();
+        }
+
         [HttpDelete("{studentId}")]
         [ProducesResponseType(typeof(Student), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]

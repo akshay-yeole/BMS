@@ -8,6 +8,7 @@ namespace BMS.Core.Contracts
         Task<IEnumerable<StudentDto>> GetAllStudentsAsync();
         Task<StudentDto> AddStudentAsync(StudentDto studentDto);
         Student GetStudentDetails(int Std, char div, int rollNo);
+        Task UpdateStudentAsync(StudentDto studentDto, Guid studentId);
         Task DeleteStudentAsync(Guid studentId);
     }
 }
