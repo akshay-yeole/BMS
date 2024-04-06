@@ -10,5 +10,6 @@ namespace BMS.Core.Contracts
         Task<Book> AddBookAsync(BookDto bookDto);
         Task UpdateBookAsync(BookDto bookDto, Guid bookCode);
         Task DeleteBookAsync(Guid bookCode);
+        Task<IEnumerable<BookDto>> GetBooksByCatgoryIdAsync(Guid categoryId);
     }
 }

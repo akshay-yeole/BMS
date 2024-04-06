@@ -62,6 +62,15 @@
 						"url": "https://localhost:7140/api/Books/{{bookId}}"
 					},
 					"response": []
+				},
+				{
+					"name": "GetBooksByBookCategoryId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://localhost:7140/api/Books/books-by-category-id/{{categoryId}}"
+					},
+					"response": []
 				}
 			]
 		},

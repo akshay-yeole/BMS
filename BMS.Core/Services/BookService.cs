@@ -60,5 +60,13 @@ namespace BMS.Core.Services
             _context.Books.Remove(isBookExists);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<BookDto>> GetBooksByCatgoryIdAsync(Guid categoryId)
+        {
+            var books = await _context.Books.Where(x=>x.Categoryid == categoryId).ToListAsync();
+            if (books == null)
+                throw new Exception();
+            return _mapper.Map<IEnumerable<BookDto>>(books);
+        }
     }
 }

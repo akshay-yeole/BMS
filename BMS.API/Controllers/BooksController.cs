@@ -31,6 +31,18 @@ namespace BMS.API.Controllers
             return Ok(books);
         }
 
+        [HttpGet("books-by-category-id/{categoryId}")]
+        [ProducesResponseType(typeof(IEnumerable<BookDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetAllBooksAsync(Guid categoryId)
+        {
+            var books = await _bookService.GetBooksByCatgoryIdAsync(categoryId);
+            if (!books.Any())
+                return NotFound();
+            return Ok(books);
+        }
+
         [HttpPost]
         [ProducesResponseType(typeof(BookDto), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
