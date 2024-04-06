@@ -10,7 +10,7 @@
 			"name": "Books",
 			"item": [
 				{
-					"name": "Get All Books",
+					"name": "GetAllBooks",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -69,7 +69,7 @@
 			"name": "BookCategory",
 			"item": [
 				{
-					"name": "Get All BookCategory",
+					"name": "GetAllBookCategory",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -119,6 +119,65 @@
 						"method": "DELETE",
 						"header": [],
 						"url": "https://localhost:7140/api/BookCategories/{{categoryId}}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "GetAllStudents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://localhost:7140/api/Students"
+					},
+					"response": []
+				},
+				{
+					"name": "AddStudent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"std\": 0,\r\n  \"div\": \"string\",\r\n  \"rollNo\": 0,\r\n  \"name\": \"string\",\r\n  \"address\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://localhost:7140/api/Students"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteStudent",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "https://localhost:7140/api/Students/{{studentId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateStudent",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"std\": 0,\r\n  \"div\": \"string\",\r\n  \"rollNo\": 0,\r\n  \"name\": \"string\",\r\n  \"address\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://localhost:7140/api/Students/{{studentId}}"
 					},
 					"response": []
 				}
