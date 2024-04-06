@@ -12,6 +12,7 @@ namespace BMS.Core
         {
             services.AddScoped<IBookCateoryService, BookCategoryService>();
             services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IStudentService, StudentService>();
         }
     }
 }

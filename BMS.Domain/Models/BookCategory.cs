@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 
 namespace BMS.Domain.Models
 {
-    public class BookCategory
+    public class BookCategory 
     {
         [Key]
         public Guid CategoryId { get; set; }

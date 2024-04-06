@@ -2,7 +2,7 @@
 
 namespace BMS.Domain.Models
 {
-    public class Book
+    public class Book 
     {
         [Key]
         public Guid BookCode { get; set; }
