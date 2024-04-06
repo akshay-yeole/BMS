@@ -7,7 +7,7 @@ namespace BMS.Domain.Models
         [Key]
         public Guid BookCode { get; set; }
         public string BookName { get; set; }
-        public bool CopiesAvailable { get; set; }
+        public long CopiesAvailable { get; set; }
         public string Author { get; set; }
         
         public Guid Categoryid { get; set; }
