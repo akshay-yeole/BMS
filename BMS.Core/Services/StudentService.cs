@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BMS.Core.Contracts;
 using BMS.Domain.Dto;
+using BMS.Domain.Models;
 using BMS.Sql.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,10 +18,27 @@ namespace BMS.Core.Services
             _mapper = mapper;
         }
 
+        public async Task<StudentDto> AddStudentAsync(StudentDto studentDto)
+        {
+            var isStudentExists = GetStudentDetails(studentDto.Std, studentDto.Div, studentDto.RollNo);
+            if (isStudentExists != null)
+                return null;
+            var student = _mapper.Map<Student>(studentDto);
+            student.Id = Guid.NewGuid();
+            await _context.Students.AddAsync(student);
+            await _context.SaveChangesAsync();
+            return studentDto;
+        }
+
         public async Task<IEnumerable<StudentDto>> GetAllStudentsAsync()
         {
-            var students = _context.Students.ToListAsync();
+            var students = _context.Students.ToList();
             return _mapper.Map<IEnumerable<StudentDto>>(students);
+        }
+
+        public Student GetStudentDetails(int Std, char div, int rollNo)
+        {
+           return _context.Students.Where(x=> x.Std == Std && x.Div == div && x.RollNo==rollNo).FirstOrDefault();
         }
     }
 }
