@@ -18,6 +18,17 @@ namespace BMS.Core.Services
             _mapper = mapper;
         }
 
+        public async Task<IEnumerable<StudentDto>> GetAllStudentsAsync()
+        {
+            var students = _context.Students.ToList();
+            return _mapper.Map<IEnumerable<StudentDto>>(students);
+        }
+
+        public Student GetStudentDetails(int Std, char div, int rollNo)
+        {
+            return _context.Students.Where(x => x.Std == Std && x.Div == div && x.RollNo == rollNo).FirstOrDefault();
+        }
+
         public async Task<StudentDto> AddStudentAsync(StudentDto studentDto)
         {
             var isStudentExists = GetStudentDetails(studentDto.Std, studentDto.Div, studentDto.RollNo);
@@ -30,15 +41,14 @@ namespace BMS.Core.Services
             return studentDto;
         }
 
-        public async Task<IEnumerable<StudentDto>> GetAllStudentsAsync()
+        public async Task DeleteStudentAsync(Guid studentId)
         {
-            var students = _context.Students.ToList();
-            return _mapper.Map<IEnumerable<StudentDto>>(students);
+            var isStudentExists = await _context.Students.Where(x=>x.Id ==studentId).FirstOrDefaultAsync();
+            if (isStudentExists == null)
+                throw new Exception();
+            _context.Students.Remove(isStudentExists);
+            await _context.SaveChangesAsync();
         }
 
-        public Student GetStudentDetails(int Std, char div, int rollNo)
-        {
-           return _context.Students.Where(x=> x.Std == Std && x.Div == div && x.RollNo==rollNo).FirstOrDefault();
-        }
     }
 }

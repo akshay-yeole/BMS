@@ -2,6 +2,7 @@
 using BMS.Core.Contracts;
 using BMS.Core.Services;
 using BMS.Domain.Dto;
+using BMS.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -43,6 +44,16 @@ namespace BMS.API.Controllers
             if (result == null)
                 return Conflict();
             return Ok(result);
+        }
+
+        [HttpDelete("{studentId}")]
+        [ProducesResponseType(typeof(Student), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> DeleteBookCategoryAsync(Guid studentId)
+        {
+            await _studentService.DeleteStudentAsync(studentId);
+            return Ok();
         }
     }
 }
