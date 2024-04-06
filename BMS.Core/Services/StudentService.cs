@@ -58,5 +58,13 @@ namespace BMS.Core.Services
             _mapper.Map(studentDto, isStudentExists);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<StudentDto>> GetStudentDetailsByStdAndDivAsync(int std, char div)
+        {
+            var students = await _context.Students.Where(x => x.Std == std && x.Div == div).ToListAsync();
+            if (students == null)
+                throw new Exception();
+            return _mapper.Map<IEnumerable<StudentDto>>(students);
+        }
     }
 }

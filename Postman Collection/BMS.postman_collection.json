@@ -189,6 +189,15 @@
 						"url": "https://localhost:7140/api/Students/{{studentId}}"
 					},
 					"response": []
+				},
+				{
+					"name": "GetStudentsByStdAndDiv",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://localhost:7140/api/Students/student-details-by-std-and-div/{{std}}/{{div}}"
+					},
+					"response": []
 				}
 			]
 		}
