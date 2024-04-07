@@ -9,12 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddControllers()
             .AddFluentValidation(v =>
             {
-                v.ImplicitlyValidateChildProperties = true;
-                v.ImplicitlyValidateRootCollectionElements = true;
                 v.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             });
-//builder.Services.AddFluentValidationAutoValidation();
-//builder.Services.AddFluentValidationClientsideAdapters();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCoreService();

@@ -52,6 +52,10 @@ namespace BMS.API.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddStudentAsync(StudentDto studentDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var result = await _studentService.AddStudentAsync(studentDto);
             if (result == null)
                 return Conflict();
@@ -65,6 +69,10 @@ namespace BMS.API.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateStudentAsync(StudentDto studentDto, Guid studentId)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             await _studentService.UpdateStudentAsync(studentDto, studentId);
             return Ok();
         }

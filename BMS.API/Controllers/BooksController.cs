@@ -50,6 +50,10 @@ namespace BMS.API.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddBookCategoryAsync(BookDto bookDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var result = await _bookService.AddBookAsync(bookDto);
             if (result == null)
                 return Conflict();
@@ -63,7 +67,11 @@ namespace BMS.API.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateBookCategoryAsync(BookDto bookDto, Guid bookCode)
         {
-             await _bookService.UpdateBookAsync(bookDto, bookCode);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _bookService.UpdateBookAsync(bookDto, bookCode);
             return Ok();
         }
 

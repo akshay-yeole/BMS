@@ -55,6 +55,10 @@ namespace BMS.API.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UpdateBookCategoryAsync(BookCategoryDto bookCategoryDto, Guid categoryId)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             await _bookCateoryService.UpdateBookCategoryAsync(bookCategoryDto, categoryId);
             return Ok();
         }

@@ -10,19 +10,19 @@ namespace BMS.API.CustomValidators
         {
             RuleFor(r => r.CopiesAvailable)
                 .GreaterThanOrEqualTo(3)
-                .WithMessage("Available copies for the book should be at least 3.");
+                .WithMessage(ParameterValidation.InvalidCopiesAvailable);
 
             RuleFor(r => r.BookName)
                 .NotEmpty()
-                .WithMessage("Book name cannot be empty.");
+                .WithMessage(ParameterValidation.InvalidBookName);
 
             RuleFor(r => r.Author)
                 .NotEmpty()
-                .WithMessage("Author name cannot be empty.");
+                .WithMessage(ParameterValidation.InvalidAuthorName);
             
             RuleFor(r => r.Categoryid)
                 .NotEmpty()
-                .WithMessage("Category ID cannot be empty.");
+                .WithMessage(ParameterValidation.InvalidCategoryId);
         }
     }
 }
