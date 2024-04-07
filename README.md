@@ -1,6 +1,6 @@
-# EMS
+# BMS
 
-# Library Management System
+# Book Management System
 
 ## Functionalities
 
