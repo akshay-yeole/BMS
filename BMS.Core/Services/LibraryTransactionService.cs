@@ -19,8 +19,8 @@ namespace BMS.Core.Services
         }
         public async Task<LibraryTransactionDto> AddLibraryTransaction(LibraryTransactionDto libraryTransactionDto)
         {
-            libraryTransactionDto.Id = Guid.NewGuid();
-            await _context.LibraryTransactions.AddAsync(_mapper.Map<LibraryTransaction>(libraryTransactionDto));
+            var transaction = _mapper.Map<LibraryTransaction>(libraryTransactionDto);
+            await _context.LibraryTransactions.AddAsync(transaction);
             await _context.SaveChangesAsync();
             return libraryTransactionDto;
         }
@@ -29,6 +29,15 @@ namespace BMS.Core.Services
         {
             var trasactions = await _context.LibraryTransactions.ToListAsync();
             return _mapper.Map<IEnumerable<LibraryTransactionDto>>(trasactions);
+        }
+
+        public async Task UpdateTransactionAsync(LibraryTransactionDto transactionDto, Guid transactionId)
+        {
+            var isTransactionExists = await _context.LibraryTransactions.Where(x=>x.Id. == transactionId).FirstOrDefaultAsync();
+            if (isTransactionExists == null)
+                throw new Exception();
+            _mapper.Map(transactionDto, isTransactionExists);
+            await _context.SaveChangesAsync();
         }
     }
 }

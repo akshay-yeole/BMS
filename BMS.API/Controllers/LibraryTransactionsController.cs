@@ -41,5 +41,16 @@ namespace BMS.API.Controllers
                 return Conflict();
             return Ok(result);
         }
+
+        [HttpPut("{transactionId}")]
+        [ProducesResponseType(typeof(LibraryTransactionDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> UpdateTransactionAsync(LibraryTransactionDto libraryTransactionDto, Guid transactionId)
+        {
+            await _transactionService.UpdateTransactionAsync(libraryTransactionDto, transactionId);
+            return Ok();
+        }
     }
 }
