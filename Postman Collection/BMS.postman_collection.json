@@ -200,6 +200,65 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Library Transaction",
+			"item": [
+				{
+					"name": "GetAllTransactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "https://localhost:7140/api/LibraryTransactions"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookCode\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"studentId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"issuedDate\": \"2024-04-07T07:00:14.686Z\",\r\n  \"returnedDate\": \"2024-04-07T07:00:14.686Z\",\r\n  \"expectedReturnedDate\": \"2024-04-07T07:00:14.686Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://localhost:7140/api/LibraryTransactions"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Transaction",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bookCode\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"studentId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\r\n  \"issuedDate\": \"2024-04-07T07:00:14.686Z\",\r\n  \"returnedDate\": \"2024-04-07T07:00:14.686Z\",\r\n  \"expectedReturnedDate\": \"2024-04-07T07:00:14.686Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://localhost:7140/api/LibraryTransactions/{{transactionId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Transaction",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "https://localhost:7140/api/LibraryTransactions/{{transactionId}}"
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
