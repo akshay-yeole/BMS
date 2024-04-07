@@ -9,6 +9,9 @@ namespace BMS.Sql.EntityConfiguration
         public void Configure(EntityTypeBuilder<LibraryTransaction> builder)
         {
             builder.HasKey(b => b.Id);
+            builder.Property(b => b.ReturnedDate)
+           .IsRequired(false)
+           .HasDefaultValueSql("NULL");
         }
     }
 }
