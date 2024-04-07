@@ -43,4 +43,12 @@ By following these guidelines, you can effectively implement and document the fu
 ### Creating a Migration
 
 ```shell
-Add-Migration 'MigrationMessage'
+Add-Migration 'migration message' 
+```
+### Updating Database
+
+```shell
+Update-Database
+```
+
+
