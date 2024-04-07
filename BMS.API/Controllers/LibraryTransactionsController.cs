@@ -16,12 +16,25 @@ namespace BMS.API.Controllers
             _transactionService = transactionService;
         }
 
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<LibraryTransactionDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetAllTransactionsAsync()
+        {
+            var result = await _transactionService.GetAllTransactionsAsync();
+            if (result == null)
+                return Conflict();
+            return Ok(result);
+        }
+
         [HttpPost]
         [ProducesResponseType(typeof(LibraryTransactionDto), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> AddBookCategoryAsync(LibraryTransactionDto libraryTransactionDto)
+        public async Task<IActionResult> AddTransactionAsync(LibraryTransactionDto libraryTransactionDto)
         {
             var result = await _transactionService.AddLibraryTransaction(libraryTransactionDto);
             if (result == null)

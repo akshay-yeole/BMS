@@ -3,6 +3,7 @@ using BMS.Core.Contracts;
 using BMS.Domain.Dto;
 using BMS.Domain.Models;
 using BMS.Sql.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace BMS.Core.Services
 {
@@ -22,6 +23,12 @@ namespace BMS.Core.Services
             await _context.LibraryTransactions.AddAsync(_mapper.Map<LibraryTransaction>(libraryTransactionDto));
             await _context.SaveChangesAsync();
             return libraryTransactionDto;
+        }
+
+        public async Task<IEnumerable<LibraryTransactionDto>> GetAllTransactionsAsync()
+        {
+            var trasactions = await _context.LibraryTransactions.ToListAsync();
+            return _mapper.Map<IEnumerable<LibraryTransactionDto>>(trasactions);
         }
     }
 }
