@@ -33,7 +33,7 @@ namespace BMS.Core.Services
 
         public async Task UpdateTransactionAsync(LibraryTransactionDto transactionDto, Guid transactionId)
         {
-            var isTransactionExists = await _context.LibraryTransactions.Where(x=>x.Id. == transactionId).FirstOrDefaultAsync();
+            var isTransactionExists = await _context.LibraryTransactions.Where(x=>x.Id == transactionId).FirstOrDefaultAsync();
             if (isTransactionExists == null)
                 throw new Exception();
             _mapper.Map(transactionDto, isTransactionExists);
