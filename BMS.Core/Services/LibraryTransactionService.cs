@@ -25,6 +25,15 @@ namespace BMS.Core.Services
             return libraryTransactionDto;
         }
 
+        public async Task DeleteTransactionAsync(Guid transactionId)
+        {
+            var isTransactionExists = await _context.LibraryTransactions.Where(x => x.Id == transactionId).FirstOrDefaultAsync();
+            if (isTransactionExists == null)
+                throw new Exception();
+            _context.LibraryTransactions.Remove(isTransactionExists);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<LibraryTransactionDto>> GetAllTransactionsAsync()
         {
             var trasactions = await _context.LibraryTransactions.ToListAsync();

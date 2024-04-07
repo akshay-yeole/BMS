@@ -9,5 +9,6 @@ namespace BMS.Core.Contracts
         Task<IEnumerable<LibraryTransactionDto>> GetAllTransactionsAsync();
         Task<LibraryTransactionDto> AddLibraryTransaction(LibraryTransactionDto libraryTransactionDto);
         Task UpdateTransactionAsync(LibraryTransactionDto transactionDto, Guid transactionId);
+        Task DeleteTransactionAsync(Guid transactionId);
     }
 }
