@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using BMS.API.AbstractValidators;
 using BMS.Domain.Contracts;
 using BMS.Domain.Dto;
 using BMS.Domain.Models;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using StatusCodes = Microsoft.AspNetCore.Http.StatusCodes;
 
@@ -12,12 +14,10 @@ namespace BMS.API.Controllers
     public class BookCategoriesController : ControllerBase
     {
         private readonly IBookCateoryService _bookCateoryService;
-        private readonly IMapper _mapper;
 
         public BookCategoriesController(IBookCateoryService bookCateoryService, IMapper mapper)
         {
             _bookCateoryService = bookCateoryService;
-            _mapper = mapper;
         }
 
         [HttpGet("")]
@@ -39,6 +39,10 @@ namespace BMS.API.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddBookCategoryAsync(BookCategoryDto bookCategoryDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var result = await _bookCateoryService.AddBookCategoryAsync(bookCategoryDto);
             if (result == null)
                 return Conflict();

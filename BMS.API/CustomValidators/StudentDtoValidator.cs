@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace BMS.API.CustomValidators
 {
-    public class StudentModelValidator : AbstractValidator<StudentDto>
+    public class StudentDtoValidator : AbstractValidator<StudentDto>
     {
-        public StudentModelValidator()
+        public StudentDtoValidator()
         {
 
             RuleFor(model => model.Std)
