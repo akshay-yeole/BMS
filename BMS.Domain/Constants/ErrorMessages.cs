@@ -3,8 +3,12 @@
     public static class ErrorMessages
     {
         public const string BookCategoryNotFound = "BookCategory is not found.";
-
         public const string BookCategoryExist = "BookCategory is Already Added.";
+
+        public const string BookAlreadyExist = "Book is Already Added.";
+        public const string BookNotFound = "Book Not found.";
+
+
 
     }
 }

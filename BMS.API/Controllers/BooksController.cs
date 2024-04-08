@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BMS.Core.Contracts;
+﻿using BMS.Core.Contracts;
 using BMS.Domain.Dto;
 using BMS.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -8,15 +7,13 @@ namespace BMS.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BooksController : ControllerBase
+    public class BooksController : BaseController
     {
-        private readonly IMapper _mapper;
         private readonly IBookService _bookService;
 
-        public BooksController(IBookService bookService, IMapper mapper)
+        public BooksController(IBookService bookService)
         {
             _bookService = bookService;
-            _mapper = mapper;
         }
 
         [HttpGet("")]
@@ -26,9 +23,7 @@ namespace BMS.API.Controllers
         public async Task<IActionResult> GetAllBooksAsync()
         {
             var books = await _bookService.GetAllBooksAsync();
-            if (!books.Any())
-                return NotFound();
-            return Ok(books);
+            return GetResult(books);
         }
 
         [HttpGet("books-by-category-id/{categoryId}")]
@@ -38,9 +33,7 @@ namespace BMS.API.Controllers
         public async Task<IActionResult> GetAllBooksAsync(Guid categoryId)
         {
             var books = await _bookService.GetBooksByCatgoryIdAsync(categoryId);
-            if (!books.Any())
-                return NotFound();
-            return Ok(books);
+            return GetResult(books);
         }
 
         [HttpPost]
@@ -50,14 +43,10 @@ namespace BMS.API.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddBookCategoryAsync(BookDto bookDto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            if (!ModelState.IsValid) 
+                return BadRequest(ModelState); 
             var result = await _bookService.AddBookAsync(bookDto);
-            if (result == null)
-                return Conflict();
-            return Ok(result);
+            return GetResult(result);
         }
 
         [HttpPut("{bookCode}")]
@@ -68,11 +57,9 @@ namespace BMS.API.Controllers
         public async Task<IActionResult> UpdateBookCategoryAsync(BookDto bookDto, Guid bookCode)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
-            await _bookService.UpdateBookAsync(bookDto, bookCode);
-            return Ok();
+            var result = await _bookService.UpdateBookAsync(bookDto, bookCode);
+            return GetResult(result);
         }
 
         [HttpDelete("{bookCode}")]
@@ -81,8 +68,8 @@ namespace BMS.API.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteBookCategoryAsync(Guid bookCode)
         {
-            await _bookService.DeleteBookAsync(bookCode);
-            return Ok();
+            var result = await _bookService.DeleteBookAsync(bookCode);
+            return GetResult(result);
         }
     }
 }

@@ -1,15 +1,16 @@
-﻿using BMS.Domain.Dto;
+﻿using BMS.Core.Common;
+using BMS.Domain.Dto;
 using BMS.Domain.Models;
 
 namespace BMS.Core.Contracts
 {
     public interface IBookService
     {
-        Task<IEnumerable<BookDto>> GetAllBooksAsync();
-        Book GetBookByName(string bookName);
-        Task<Book> AddBookAsync(BookDto bookDto);
-        Task UpdateBookAsync(BookDto bookDto, Guid bookCode);
-        Task DeleteBookAsync(Guid bookCode);
-        Task<IEnumerable<BookDto>> GetBooksByCatgoryIdAsync(Guid categoryId);
+        Task<Result<IEnumerable<BookDto>>> GetAllBooksAsync();
+        Result<Book> GetBookByName(string bookName);
+        Task<Result<bool>> AddBookAsync(BookDto bookDto);
+        Task<Result<bool>> UpdateBookAsync(BookDto bookDto, Guid bookCode);
+        Task<Result<bool>> DeleteBookAsync(Guid bookCode);
+        Task<Result<IEnumerable<BookDto>>> GetBooksByCatgoryIdAsync(Guid categoryId);
     }
 }

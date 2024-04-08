@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using BMS.Core.Common;
 using BMS.Core.Contracts;
+using BMS.Domain.Constants;
 using BMS.Domain.Dto;
 using BMS.Domain.Models;
 using BMS.Sql.Context;
@@ -18,55 +20,62 @@ namespace BMS.Core.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<BookDto>> GetAllBooksAsync()
+        public async Task<Result<IEnumerable<BookDto>>> GetAllBooksAsync()
         {
             var books = await _context.Books.ToListAsync();
-            return _mapper.Map<IEnumerable<BookDto>>(books);
+            var allBooks = _mapper.Map<IEnumerable<BookDto>>(books);
+            return Result.Ok(allBooks);
         }
 
-        public Book GetBookByName(string bookName)
+        public Result<Book> GetBookByName(string bookName)
         {
-            return _context.Books.FirstOrDefault(x => x.BookName == bookName);
+            var book = _context.Books.FirstOrDefault(x => x.BookName == bookName);
+            if (book == null)
+                return Result.Fail<Book>(ErrorMessages.BookNotFound, StatusCodes.NotFoundError);
+            return Result.Ok(book);
         }
 
-        public async Task<Book> AddBookAsync(BookDto bookDto)
+        public async Task<Result<bool>> AddBookAsync(BookDto bookDto)
         {
             var isBookExists = GetBookByName(bookDto.BookName);
-
-            if (isBookExists != null)
-                return null;
+            if (isBookExists.Value != null)
+                return Result.Fail<bool>(ErrorMessages.BookAlreadyExist, StatusCodes.BadRequestError);
+            
             var book = _mapper.Map<Book>(bookDto);
             book.BookCode = Guid.NewGuid();
             await _context.Books.AddAsync(book);
             await _context.SaveChangesAsync();
-            return book;
+            return Result.Ok(true);
         }
 
-        public async Task UpdateBookAsync(BookDto bookDto, Guid bookCode)
+        public async Task<Result<bool>> UpdateBookAsync(BookDto bookDto, Guid bookCode)
         {
 
             var isBookExists = await _context.Books.FindAsync(bookCode);
             if (isBookExists == null)
-                throw new Exception();
+                return Result.Fail<bool>(ErrorMessages.BookNotFound, StatusCodes.NotFoundError);
             _mapper.Map(bookDto, isBookExists);
             await _context.SaveChangesAsync();
+            return Result.Ok(true);
         }
 
-        public async Task DeleteBookAsync(Guid bookCode)
+        public async Task<Result<bool>> DeleteBookAsync(Guid bookCode)
         {
             var isBookExists = await _context.Books.FindAsync(bookCode);
             if (isBookExists == null)
-                throw new Exception();
+                return Result.Fail<bool>(ErrorMessages.BookNotFound, StatusCodes.NotFoundError);
             _context.Books.Remove(isBookExists);
             await _context.SaveChangesAsync();
+            return Result.Ok(true);
         }
 
-        public async Task<IEnumerable<BookDto>> GetBooksByCatgoryIdAsync(Guid categoryId)
+        public async Task<Result<IEnumerable<BookDto>>> GetBooksByCatgoryIdAsync(Guid categoryId)
         {
             var books = await _context.Books.Where(x=>x.Categoryid == categoryId).ToListAsync();
             if (books == null)
-                throw new Exception();
-            return _mapper.Map<IEnumerable<BookDto>>(books);
+                return Result.Fail<IEnumerable<BookDto>>(ErrorMessages.BookNotFound, StatusCodes.NotFoundError);
+            var allBooks = _mapper.Map<IEnumerable<BookDto>>(books);
+            return Result.Ok(allBooks);
         }
     }
 }
