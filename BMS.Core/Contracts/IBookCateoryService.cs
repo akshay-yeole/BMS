@@ -1,4 +1,5 @@
-﻿using BMS.Domain.Dto;
+﻿using BMS.Core.Common;
+using BMS.Domain.Dto;
 using BMS.Domain.Models;
 
 namespace BMS.Domain.Contracts
@@ -7,8 +8,8 @@ namespace BMS.Domain.Contracts
     {
         Task<IEnumerable<BookCategoryDto>> GetAllBookCategoriesAsync();
         BookCategory GetBookCategoryByName(string categoryName);
-        Task<BookCategoryDto> AddBookCategoryAsync(BookCategoryDto bookCategoryDto);
-        Task UpdateBookCategoryAsync(BookCategoryDto bookCategoryDto, Guid categoryId);
-        Task DeleteBookCategoryAsync(Guid categoryId);
+        Task<Result<bool>> AddBookCategoryAsync(BookCategoryDto bookCategoryDto);
+        Task<Result<bool>> UpdateBookCategoryAsync(BookCategoryDto bookCategoryDto, Guid categoryId);
+        Task<Result<bool>> DeleteBookCategoryAsync(Guid categoryId);
     }
 }

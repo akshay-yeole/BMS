@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using BMS.Core.Common;
+using BMS.Domain.Constants;
 using BMS.Domain.Contracts;
 using BMS.Domain.Dto;
 using BMS.Domain.Models;
@@ -29,34 +31,37 @@ namespace BMS.Domain.Services
             return _context.BookCategories.FirstOrDefault(x => x.CategoryName == categoryName);
         }
 
-        public async Task<BookCategoryDto> AddBookCategoryAsync(BookCategoryDto bookCategoryDto)
+        public async Task<Result<bool>> AddBookCategoryAsync(BookCategoryDto bookCategoryDto)
         {
             var isBookCategoryExists = GetBookCategoryByName(bookCategoryDto.CategoryName);
             if (isBookCategoryExists != null)
-                throw new Exception("Product not found");
-            var bookCategory = _mapper.Map<BookCategory>(bookCategoryDto);
-            bookCategory.CategoryId = Guid.NewGuid();
-            await _context.BookCategories.AddAsync(bookCategory);
+            {
+                string errMessage = string.Format(ErrorMessages.BookCategoryExist, bookCategoryDto);
+                return Result.Fail<bool>(errMessage, StatusCodes.BadRequestError);
+            }
+            await _context.BookCategories.AddAsync(_mapper.Map<BookCategory>(bookCategoryDto));
             await _context.SaveChangesAsync();
-            return _mapper.Map<BookCategoryDto>(bookCategory);
+            return Result.Ok(true);
         }
 
-        public async Task UpdateBookCategoryAsync(BookCategoryDto bookCategoryDto, Guid categoryId)
+        public async Task<Result<bool>> UpdateBookCategoryAsync(BookCategoryDto bookCategoryDto, Guid categoryId)
         {
             var isBookCategoryExists = await _context.BookCategories.FindAsync(categoryId);
             if (isBookCategoryExists == null)
-                throw new Exception("Product not found");
+                return Result.Fail<bool>(ErrorMessages.BookCategoryNotFound, StatusCodes.NotFoundError);
             _mapper.Map(bookCategoryDto, isBookCategoryExists);
             await _context.SaveChangesAsync();
+            return Result.Ok(true);
         }
 
-        public async Task DeleteBookCategoryAsync(Guid categoryId)
+        public async Task<Result<bool>> DeleteBookCategoryAsync(Guid categoryId)
         {
             var isBookCategoryExists = await _context.BookCategories.FindAsync(categoryId);
             if (isBookCategoryExists == null)
-                throw new Exception("Product not found");
+                return Result.Fail<bool>(ErrorMessages.BookCategoryNotFound, StatusCodes.NotFoundError);
             _context.BookCategories.Remove(isBookCategoryExists);
             await _context.SaveChangesAsync();
+            return Result.Ok(true,StatusCodes.NoContentSuccessCode);
         }
     }
 }

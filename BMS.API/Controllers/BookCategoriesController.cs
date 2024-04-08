@@ -11,7 +11,7 @@ namespace BMS.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BookCategoriesController : ControllerBase
+    public class BookCategoriesController : BaseController
     {
         private readonly IBookCateoryService _bookCateoryService;
 
@@ -27,8 +27,6 @@ namespace BMS.API.Controllers
         public async Task<IActionResult> GetBookCategoriesAsync()
         {
             var result = await _bookCateoryService.GetAllBookCategoriesAsync();
-            if (result == null || !result.Any())
-                return NotFound();
             return Ok(result);
         }
 
@@ -44,9 +42,9 @@ namespace BMS.API.Controllers
                 return BadRequest(ModelState);
             }
             var result = await _bookCateoryService.AddBookCategoryAsync(bookCategoryDto);
-            if (result == null)
-                return Conflict();
-            return Ok(result);
+            if (result.IsSuccess)
+                return Created(string.Empty,null);
+            return GetResult(result);
         }
 
         [HttpPut("{categoryId}")]
@@ -59,8 +57,8 @@ namespace BMS.API.Controllers
             {
                 return BadRequest(ModelState);
             }
-            await _bookCateoryService.UpdateBookCategoryAsync(bookCategoryDto, categoryId);
-            return Ok();
+            var result = await _bookCateoryService.UpdateBookCategoryAsync(bookCategoryDto, categoryId);
+            return GetResult(result); 
         }
 
         [HttpDelete("{categoryId}")]
@@ -69,8 +67,8 @@ namespace BMS.API.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteBookCategoryAsync(Guid categoryId)
         {
-            await _bookCateoryService.DeleteBookCategoryAsync(categoryId);
-            return Ok();
+            var result = await _bookCateoryService.DeleteBookCategoryAsync(categoryId);
+            return GetResult(result);
         }
     }
 }
