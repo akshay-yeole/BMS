@@ -8,7 +8,7 @@
         public const string BookAlreadyExist = "Book is Already Added.";
         public const string BookNotFound = "Book Not found.";
 
-
-
+        public const string StudentNotFound = "Student is not found.";
+        public const string StudentyExist = "Student is Already Added.";
     }
 }

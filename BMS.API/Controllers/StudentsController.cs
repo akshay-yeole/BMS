@@ -1,23 +1,19 @@
 ﻿using AutoMapper;
 using BMS.Core.Contracts;
-using BMS.Core.Services;
 using BMS.Domain.Dto;
 using BMS.Domain.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BMS.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StudentsController : ControllerBase
+    public class StudentsController : BaseController
     {
-        private readonly IMapper _mapper;
         private readonly IStudentService _studentService;
 
-        public StudentsController(IMapper mapper, IStudentService studentService)
+        public StudentsController(IStudentService studentService)
         {
-            _mapper = mapper;
             _studentService = studentService;
         }
 
@@ -28,9 +24,7 @@ namespace BMS.API.Controllers
         public async Task<IActionResult> GetAllStudentsAsync()
         {
             var students = await _studentService.GetAllStudentsAsync();
-            if (!students.Any())
-                return NotFound();
-            return Ok(students);
+            return GetResult(students);
         }
 
         [HttpGet("student-details-by-std-and-div/{std}/{div}")]
@@ -40,9 +34,7 @@ namespace BMS.API.Controllers
         public async Task<IActionResult> GetAllStudentsAsync(int std, char div)
         {
             var students = await _studentService.GetAllStudentsAsync();
-            if (!students.Any())
-                return NotFound();
-            return Ok(students);
+            return GetResult(students);
         }
 
         [HttpPost]
@@ -57,9 +49,7 @@ namespace BMS.API.Controllers
                 return BadRequest(ModelState);
             }
             var result = await _studentService.AddStudentAsync(studentDto);
-            if (result == null)
-                return Conflict();
-            return Ok(result);
+            return GetResult(result);
         }
 
         [HttpPut("{studentId}")]
@@ -73,8 +63,8 @@ namespace BMS.API.Controllers
             {
                 return BadRequest(ModelState);
             }
-            await _studentService.UpdateStudentAsync(studentDto, studentId);
-            return Ok();
+            var result = await _studentService.UpdateStudentAsync(studentDto, studentId);
+            return GetResult(result);
         }
 
         [HttpDelete("{studentId}")]
@@ -83,8 +73,8 @@ namespace BMS.API.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteBookCategoryAsync(Guid studentId)
         {
-            await _studentService.DeleteStudentAsync(studentId);
-            return Ok();
+            var result = await _studentService.DeleteStudentAsync(studentId);
+            return GetResult(result);
         }
     }
 }

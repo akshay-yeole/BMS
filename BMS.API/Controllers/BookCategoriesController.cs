@@ -15,7 +15,7 @@ namespace BMS.API.Controllers
     {
         private readonly IBookCateoryService _bookCateoryService;
 
-        public BookCategoriesController(IBookCateoryService bookCateoryService, IMapper mapper)
+        public BookCategoriesController(IBookCateoryService bookCateoryService)
         {
             _bookCateoryService = bookCateoryService;
         }
