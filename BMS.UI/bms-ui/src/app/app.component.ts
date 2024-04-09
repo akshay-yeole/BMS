@@ -6,14 +6,6 @@ import { BookCategoryService } from './core/services/book-category.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  title = 'bms-ui';
-  constructor(private bookCategoryService : BookCategoryService) {
-    
-  }
-  ngOnInit(): void {
-    this.bookCategoryService.getAllBookCategories().subscribe(data => console.log(data));
-  }
-
+export class AppComponent {
   
 }

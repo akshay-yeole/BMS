@@ -9,6 +9,6 @@ export class BookCategoryService extends CommonHttpService {
     url ="https://localhost:7140/api";
 
     getAllBookCategories(){
-        return this.sendGetRequest<BookCategory>(`${this.url}/BookCategories`);
+        return this.sendGetRequest<BookCategory[]>(`${this.url}/BookCategories`);
     }
 }

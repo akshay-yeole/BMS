@@ -1,4 +1,4 @@
 
 export interface BookCategory {
-    name : string;
+    categoryName : string;
 }
