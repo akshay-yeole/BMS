@@ -1,4 +1,20 @@
-<p>book-categories-list works!</p>
-<ul *ngFor="let c of bookCategories">
-   <li>{{c.categoryName}}</li> 
-</ul>
+<table class="table align-middle mb-0 bg-white">
+   <thead class="bg-light">
+      <tr>
+         <th>Category Name</th>
+         <th>Actions</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr *ngFor="let c of bookCategories">
+         <td>
+            {{c.categoryName}}
+         </td>
+         <td>
+            <button type="button" class="btn btn-link btn-sm btn-rounded">
+               Edit
+            </button>
+         </td>
+      </tr>
+   </tbody>
+</table>
