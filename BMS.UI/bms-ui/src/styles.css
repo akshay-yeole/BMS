@@ -1,2 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('node_modules/bootstrap/dist/css/bootstrap.min.css');
+
+.sidebar {
+    background-color: #f8f9fa; /* Light background color for sidebar */
+    border-right: 1px solid #e9ecef; /* Add a border on the right side of the sidebar */
+    padding: 15px; /* Add some padding inside the sidebar */
+ }
+ 
+ .sidebar .list-group-item {
+    border-radius: 0; /* Remove border-radius from list group items */
+ }
+ 
+ .sidebar .list-group-item:hover {
+    background-color: #e9ecef; /* Change background color on hover */
+ }
+ 
+ .main-content {
+    padding-top: 0; /* Add some top padding to the main content */
+ }
+ 

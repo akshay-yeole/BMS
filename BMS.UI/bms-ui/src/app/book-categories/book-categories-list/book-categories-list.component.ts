@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { map } from 'rxjs';
 import { BookCategory } from 'src/app/core/models/book-category.model';
 import { BookCategoryService } from 'src/app/core/services/book-category.service';
@@ -9,19 +10,22 @@ import { BookCategoryService } from 'src/app/core/services/book-category.service
   styleUrls: ['./book-categories-list.component.css']
 })
 export class BookCategoriesListComponent implements OnInit {
-  bookCategories! : BookCategory[];
-  
-  constructor(private apiService : BookCategoryService) {
-    
-  }
+  bookCategories: BookCategory[] = [];
+  newCategoryName : any;
+  constructor(private modalService: NgbModal, private apiService: BookCategoryService) { }
+
   ngOnInit(): void {
-    this.apiService.getAllBookCategories().pipe(
-    ).subscribe(res => {
-      console.log(res);
+    this.loadBookCategories();
+  }
+
+  loadBookCategories() {
+    this.apiService.getAllBookCategories().subscribe(res => {
       this.bookCategories = res;
     });
+  }
 
-    console.log(this.bookCategories);
+  saveCategory(){
+
   }
 
 }
