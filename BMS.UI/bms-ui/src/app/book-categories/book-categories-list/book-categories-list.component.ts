@@ -12,6 +12,7 @@ import { BookCategoryService } from 'src/app/core/services/book-category.service
 export class BookCategoriesListComponent implements OnInit {
   bookCategories: BookCategory[] = [];
   newCategoryName : any;
+  categoryName: string = '';
   constructor(private modalService: NgbModal, private apiService: BookCategoryService) { }
 
   ngOnInit(): void {
@@ -26,6 +27,13 @@ export class BookCategoriesListComponent implements OnInit {
 
   saveCategory(){
 
+  }
+
+  addCategory() {
+    // Add your logic here to handle adding the category, such as calling a service or emitting an event.
+    console.log('Adding category:', this.categoryName);
+    // You can also reset the categoryName if needed
+    this.categoryName = '';
   }
 
 }

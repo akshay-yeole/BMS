@@ -4,9 +4,9 @@
          <h2>Book Categories</h2>
       </div>
       <div class="col text-end">
-         <button type="button" class="btn btn-primary">
-            Add Book Category
-         </button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+         Add Category
+       </button>
       </div>
    </div>
 
@@ -24,9 +24,34 @@
             <td>{{ category.categoryName }}</td>
             <td>
                <button class="btn btn-secondary btn-sm">Edit</button>
+               &nbsp;&nbsp;&nbsp;
                <button class="btn btn-danger btn-sm">Delete</button>
             </td>
          </tr>
       </tbody>
    </table>
 </div>
+
+<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="addCategoryModalLabel">Add Category</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         <form>
+           <div class="mb-3">
+             <label for="categoryName" class="form-label">Category Name</label>
+             <input type="text" class="form-control" id="categoryName" placeholder="Enter category name" [(ngModel)]="categoryName" name="categoryName" required>
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+             <button type="button" class="btn btn-primary" (click)="addCategory()">Add Category</button>
+           </div>
+         </form>
+       </div>
+     </div>
+   </div>
+ </div>
+ 
