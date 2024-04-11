@@ -51,4 +51,13 @@ Add-Migration 'migration message'
 Update-Database
 ```
 
+## Run UI on Local
+Run below comand
+```shell
+npm i
+```
+
+```shell
+npm run start
+```
 
