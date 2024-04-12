@@ -18,6 +18,8 @@ import { BooksListComponent } from './books/books-list/books-list.component';
 import { AddBookComponent } from './books/books-list/add-book/add-book.component';
 import { UpdateBookComponent } from './books/books-list/update-book/update-book.component';
 import { StudentsListComponent } from './students/students-list/students-list.component';
+import { AddStudentComponent } from './students/students-list/add-student/add-student.component';
+import { EditStudentComponent } from './students/students-list/edit-student/edit-student.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,9 @@ import { StudentsListComponent } from './students/students-list/students-list.co
     BooksListComponent,
     AddBookComponent,
     UpdateBookComponent,
-    StudentsListComponent
+    StudentsListComponent,
+    AddStudentComponent,
+    EditStudentComponent
   ],
   imports: [
     BrowserModule,

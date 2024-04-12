@@ -1,0 +1,50 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <h2>Add Student</h2>
+        </div>
+        <div class="col text-end">
+            <a routerLink="" class="btn btn-secondary btn-border"> Dashboard </a>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <div class="row justify-content-left">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form (ngSubmit)="addStudent()" #categoryForm="ngForm">
+                            <div class="mb-3">
+                                <label for="standard" class="form-label">Standard :</label>
+                                <input type="number" class="form-control btn-border" id="standard" name="standard"
+                                    [(ngModel)]="student.std" placeholder="Enter std no" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="div" class="form-label">Division :</label>
+                                <input type="text" class="form-control btn-border" id="div" name="div"
+                                    [(ngModel)]="student.div" placeholder="Enter Div " required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="rollNo" class="form-label">Roll No :</label>
+                                <input type="number" class="form-control btn-border" id="rollNo" name="rollNo"
+                                    [(ngModel)]="student.rollNo" placeholder="Enter roll no" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="bookName" class="form-label">Student Name:</label>
+                                <input type="text" class="form-control btn-border" id="bookName" name="bookName"
+                                    [(ngModel)]="student.name" placeholder="Enter student name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Address :</label>
+                                <input type="text" class="form-control btn-border" id="address" name="address"
+                                    [(ngModel)]="student.address" placeholder="Enter address here" required>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-border">Add</button>
+                            &nbsp;&nbsp;&nbsp;
+                            <a routerLink="/students" class="btn btn-danger btn-border" >Cancel</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
