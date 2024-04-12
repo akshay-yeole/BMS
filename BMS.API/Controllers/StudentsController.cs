@@ -37,6 +37,18 @@ namespace BMS.API.Controllers
             return GetResult(students);
         }
 
+        [HttpGet("{std}/{div}/{rollNo}")]
+        [ProducesResponseType(typeof(IEnumerable<StudentDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetStudentDetailsAsync(int std, char div, int rollNo)
+        {
+            var students =  _studentService.GetStudentDetails(std, div, rollNo);
+            if (students == null)
+                return NotFound();
+            return Ok(students);
+        }
+
         [HttpPost]
         [ProducesResponseType(typeof(StudentDto), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]

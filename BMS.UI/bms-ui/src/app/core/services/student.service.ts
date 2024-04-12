@@ -16,4 +16,9 @@ export class StudentService extends CommonHttpService {
   addStudent(data: Student): Observable<boolean> {
     return this.sendPostRequest<boolean>(`${this.url}/Students`, data);
   }
+
+  getStudentDetails(std: number, div:string, rollNo : number){
+    console.log(`${this.url}/Students/${std}/${div}/${rollNo}`);
+    return this.sendGetRequest<Student>(`${this.url}/Students/${std}/${div}/${rollNo}`);
+  }
 }

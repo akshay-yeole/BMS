@@ -27,7 +27,7 @@
              <td>{{student.rollNo}}</td>
              <td>{{ student.name }}</td>
              <td>
-                <a [routerLink]="'edit/' + student.std + '/' + student.rollNo + '/' + student.div" class="btn btn-secondary btn-sm btn-border">Edit</a>
+                <a [routerLink]="'edit/' + student.std + '/' + student.div + '/' + student.rollNo" class="btn btn-secondary btn-sm btn-border">Edit</a>
                 &nbsp;&nbsp;&nbsp;
                 <button class="btn btn-danger btn-sm btn-border" (click)="deleteStudent(student.std, student.std, student.div)">Delete</button>
              </td>
