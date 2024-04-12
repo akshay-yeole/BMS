@@ -1,5 +1,18 @@
 <div class="main-content">
   <div class="container mt-4">
-     <router-outlet></router-outlet>
+    <!-- dashboard.component.html -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-3 col-md-6" *ngFor="let card of cards">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="card-title">{{ card.title }}</h5>
+              <p class="card-text">{{ card.content }}</p>
+              <a routerLink="book-categories" class="btn btn-secondary btn-border">View Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

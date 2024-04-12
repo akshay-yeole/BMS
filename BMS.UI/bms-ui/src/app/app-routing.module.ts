@@ -4,11 +4,16 @@ import { BookCategoriesListComponent } from './book-categories/book-categories-l
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AddBookCategoryComponent } from './book-categories/book-categories-list/add-book-category/add-book-category.component';
 import { UpdateBookCategoryComponent } from './book-categories/book-categories-list/update-book-category/update-book-category.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 const routes: Routes = [
   {
     path: '',
+    component: DashboardComponent,
+  },
+  {
+    path: 'book-categories',
     component: BookCategoriesListComponent,
   },
   {
