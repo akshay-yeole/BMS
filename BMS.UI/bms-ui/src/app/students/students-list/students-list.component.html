@@ -29,7 +29,7 @@
              <td>
                 <a [routerLink]="'edit/' + student.std + '/' + student.div + '/' + student.rollNo" class="btn btn-secondary btn-sm btn-border">Edit</a>
                 &nbsp;&nbsp;&nbsp;
-                <button class="btn btn-danger btn-sm btn-border" (click)="deleteStudent(student.std, student.std, student.div)">Delete</button>
+                <button class="btn btn-danger btn-sm btn-border" (click)="deleteStudent(student.id)">Delete</button>
              </td>
           </tr>
        </tbody>

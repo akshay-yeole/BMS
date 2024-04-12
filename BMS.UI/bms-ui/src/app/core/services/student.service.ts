@@ -17,11 +17,20 @@ export class StudentService extends CommonHttpService {
     return this.sendPostRequest<boolean>(`${this.url}/Students`, data);
   }
 
-  getStudentDetails(std: number, div:string, rollNo : number){
-    return this.sendGetRequest<Student>(`${this.url}/Students/${std}/${div}/${rollNo}`);
+  getStudentDetails(std: number, div: string, rollNo: number) {
+    return this.sendGetRequest<Student>(
+      `${this.url}/Students/${std}/${div}/${rollNo}`
+    );
   }
 
-  update(model : Student) : Observable<boolean>{
-    return this.sendPutRequest<boolean>(`${this.url}/Students/${model.id}`, model);
+  update(model: Student): Observable<boolean> {
+    return this.sendPutRequest<boolean>(
+      `${this.url}/Students/${model.id}`,
+      model
+    );
+  }
+
+  delete(studentId: string) : Observable<boolean>{
+    return this.sendDeleteRequest<boolean>(`${this.url}/Students/${studentId}`);
 }
 }

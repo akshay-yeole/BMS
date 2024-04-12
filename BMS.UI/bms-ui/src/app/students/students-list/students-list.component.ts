@@ -13,6 +13,10 @@ export class StudentsListComponent implements OnInit {
   constructor(private studentService: StudentService) {}
 
   ngOnInit(): void {
+    this.loadStudentsData();
+  }
+
+  loadStudentsData() {
     this.studentService.getAllStudents().subscribe(
       (data) => {
         this.students = data;
@@ -23,7 +27,9 @@ export class StudentsListComponent implements OnInit {
     );
   }
 
-  deleteStudent(std: number, rollNo : number, div: string){
-
+  deleteStudent(studentId: string) {
+    this.studentService.delete(studentId).subscribe((data) => {
+      this.loadStudentsData();
+    });
   }
 }
