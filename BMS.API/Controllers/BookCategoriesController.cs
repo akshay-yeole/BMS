@@ -67,5 +67,15 @@ namespace BMS.API.Controllers
             var result = await _bookCateoryService.DeleteBookCategoryAsync(categoryId);
             return GetResult(result);
         }
+
+        [HttpGet("{categoryId}")]
+        [ProducesResponseType(typeof(BookCategory), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetCategoryByIdAsync(Guid categoryId)
+        {
+            var result = await _bookCateoryService.GetCategoryById(categoryId);
+            return GetResult(result);
+        }
     }
 }

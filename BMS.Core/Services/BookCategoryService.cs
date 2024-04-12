@@ -63,5 +63,13 @@ namespace BMS.Domain.Services
             await _context.SaveChangesAsync();
             return Result.Ok(true,StatusCodes.NoContentSuccessCode);
         }
+
+        public async Task<Result<BookCategoryDto>> GetCategoryById(Guid categoryId)
+        {
+            var categoryDetails = await _context.BookCategories.FindAsync(categoryId);
+            if(categoryDetails == null)
+                return Result.Fail<BookCategoryDto>(ErrorMessages.BookCategoryNotFound, StatusCodes.NotFoundError);
+            return Result.Ok(_mapper.Map<BookCategoryDto>(categoryDetails)); 
+        }
     }
 }

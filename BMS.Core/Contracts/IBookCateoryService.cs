@@ -11,5 +11,7 @@ namespace BMS.Domain.Contracts
         Task<Result<bool>> AddBookCategoryAsync(BookCategoryDto bookCategoryDto);
         Task<Result<bool>> UpdateBookCategoryAsync(BookCategoryDto bookCategoryDto, Guid categoryId);
         Task<Result<bool>> DeleteBookCategoryAsync(Guid categoryId);
+
+        Task<Result<BookCategoryDto>> GetCategoryById(Guid categoryId);
     }
 }
