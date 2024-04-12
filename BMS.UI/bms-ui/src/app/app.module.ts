@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { BookCategoriesListComponent } from './book-categories/book-categories-list/book-categories-list.component';
 import { AddBookCategoryComponent } from './book-categories/book-categories-list/add-book-category/add-book-category.component';
 import { UpdateBookCategoryComponent } from './book-categories/book-categories-list/update-book-category/update-book-category.component';
+import { BooksListComponent } from './books/books-list/books-list.component';
+import { AddBookComponent } from './books/books-list/add-book/add-book.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,9 @@ import { UpdateBookCategoryComponent } from './book-categories/book-categories-l
     DashboardComponent,
     BookCategoriesListComponent,
     AddBookCategoryComponent,
-    UpdateBookCategoryComponent
+    UpdateBookCategoryComponent,
+    BooksListComponent,
+    AddBookComponent
   ],
   imports: [
     BrowserModule,

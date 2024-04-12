@@ -27,18 +27,15 @@ namespace BMS.Core.Services
             return Result.Ok(allBooks);
         }
 
-        public Result<Book> GetBookByName(string bookName)
+        public Book GetBookByName(string bookName)
         {
-            var book = _context.Books.FirstOrDefault(x => x.BookName == bookName);
-            if (book == null)
-                return Result.Fail<Book>(ErrorMessages.BookNotFound, StatusCodes.NotFoundError);
-            return Result.Ok(book);
+            return _context.Books.FirstOrDefault(x => x.BookName == bookName);  
         }
 
         public async Task<Result<bool>> AddBookAsync(BookDto bookDto)
         {
             var isBookExists = GetBookByName(bookDto.BookName);
-            if (isBookExists.Value != null)
+            if (isBookExists != null)
                 return Result.Fail<bool>(ErrorMessages.BookAlreadyExist, StatusCodes.BadRequestError);
             
             var book = _mapper.Map<Book>(bookDto);

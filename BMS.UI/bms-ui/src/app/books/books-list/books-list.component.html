@@ -1,0 +1,33 @@
+<div class="container mt-4">
+    <div class="row">
+       <div class="col">
+          <h2>Books</h2>
+       </div>
+       <div class="col text-end">
+          <a routerLink="add" class="btn btn-primary btn-border" > Add Book </a>
+       </div>
+    </div>
+ 
+    <table class="table mt-3">
+       <thead>
+          <tr>
+             <th>#</th>
+             <th>Book Name</th>
+             <th>Book Category</th>
+             <th>Actions</th>
+          </tr>
+       </thead>
+       <tbody>
+          <tr *ngFor="let book of books; let i = index">
+             <td>{{ i + 1 }}</td>
+             <td>{{ book.bookName }}</td>
+             <td>demo</td>
+             <td>
+                <a [routerLink]="'edit/' + book.bookId" class="btn btn-secondary btn-sm btn-border">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <button class="btn btn-danger btn-sm btn-border" (click)="deleteCagetory(book.bookId)">Delete</button>
+             </td>
+          </tr>
+       </tbody>
+    </table>
+ </div>

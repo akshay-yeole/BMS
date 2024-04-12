@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { BookCategoryService } from '../core/services/book-category.service';
 import { map } from 'rxjs';
+import { BookService } from '../core/services/book.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,9 +14,12 @@ export class DashboardComponent {
   studentsCount: number = 0;
   booksCount: number = 0;
   transactionCount: number = 0;
-  cards: { title: string; content: any }[] = [];
+  cards: { title: string; content: any; link: string }[] = [];
 
-  constructor(private catgeoryService: BookCategoryService) {}
+  constructor(
+    private catgeoryService: BookCategoryService,
+    private bookService: BookService
+  ) {}
 
   ngOnInit(): void {
     this.renderDetails();
@@ -32,15 +36,31 @@ export class DashboardComponent {
         this.updateCards();
       });
 
-      
+      this.bookService
+      .getAllBooks()
+      .pipe(
+        map((books) => books.length) // Map the array to its length
+      )
+      .subscribe((count) => {
+        this.booksCount = count;
+        this.updateCards();
+      });
   }
 
   updateCards(): void {
     this.cards = [
-      { title: 'Book Categories', content: this.categoryCount },
-      { title: 'Books', content: this.booksCount },
-      { title: 'Students', content: this.studentsCount },
-      { title: 'Transactions', content: this.transactionCount },
+      {
+        title: 'Book Categories',
+        content: this.categoryCount,
+        link: 'book-categories',
+      },
+      { title: 'Books', content: this.booksCount, link: 'books' },
+      { title: 'Students', content: this.studentsCount, link: 'students' },
+      {
+        title: 'Transactions',
+        content: this.transactionCount,
+        link: 'transaction',
+      },
     ];
   }
 }
