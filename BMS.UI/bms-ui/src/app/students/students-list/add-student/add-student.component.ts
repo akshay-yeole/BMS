@@ -21,7 +21,7 @@ export class AddStudentComponent {
   constructor(private studentService: StudentService, private router: Router) {}
 
   addStudent() {
-    this.studentService.addStudent(this.student).subscribe(
+    this.studentService.add(this.student).subscribe(
       (data) => {
         this.router.navigate(['students']);
       },

@@ -13,12 +13,15 @@ export class StudentService extends CommonHttpService {
     return this.sendGetRequest<Student[]>(`${this.url}/Students`);
   }
 
-  addStudent(data: Student): Observable<boolean> {
+  add(data: Student): Observable<boolean> {
     return this.sendPostRequest<boolean>(`${this.url}/Students`, data);
   }
 
   getStudentDetails(std: number, div:string, rollNo : number){
-    console.log(`${this.url}/Students/${std}/${div}/${rollNo}`);
     return this.sendGetRequest<Student>(`${this.url}/Students/${std}/${div}/${rollNo}`);
   }
+
+  update(model : Student) : Observable<boolean>{
+    return this.sendPutRequest<boolean>(`${this.url}/Students/${model.id}`, model);
+}
 }

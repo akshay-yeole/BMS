@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Student } from 'src/app/core/models/student.model';
 import { StudentService } from 'src/app/core/services/student.service';
 
@@ -22,7 +22,7 @@ export class EditStudentComponent implements OnInit{
   id:number=0;
   div: string='';
   rollNo: number=0;
-  constructor(private studentService : StudentService,private route : ActivatedRoute){}
+  constructor(private studentService : StudentService,private route : ActivatedRoute, private router : Router){}
 
   ngOnInit(){
     this.route.params.subscribe(params => {
@@ -35,5 +35,11 @@ export class EditStudentComponent implements OnInit{
     });
   }
 
-  updateStudent(){}
+  updateStudent(){
+    this.studentService.update(this.student).subscribe((data)=>{
+      this.router.navigate(['students']);
+    },(err)=>{
+      console.log(err);
+    });
+  }
 }

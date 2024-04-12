@@ -14,7 +14,7 @@ namespace BMS.API.CustomValidators
 
             RuleFor(model => model.Div)
                 .NotEmpty().WithMessage("Division should not be empty.")
-                .Must(div => div == 'A' || div == 'B' || div == 'C')
+                .Must(div => div == 'a' || div == 'b' || div == 'c')
                 .WithMessage("Division should be 'A', 'B', or 'C'.");
 
             RuleFor(model => model.RollNo)
