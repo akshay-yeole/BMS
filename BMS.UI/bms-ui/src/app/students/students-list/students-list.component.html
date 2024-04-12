@@ -1,0 +1,37 @@
+<div class="container mt-4">
+    <div class="row">
+       <div class="col">
+          <h2>Students</h2>
+       </div>
+       <div class="col text-end">
+          <a routerLink="add" class="btn btn-primary btn-border" > Add Student </a>
+       </div>
+    </div>
+ 
+    <table class="table mt-3">
+       <thead>
+          <tr>
+             <th>#</th>
+             <th>Standard</th>
+             <th>Div</th>
+             <th>Roll No</th>
+             <th>Name</th>
+             <th>Actions</th>
+          </tr>
+       </thead>
+       <tbody>
+          <tr *ngFor="let student of students; let i = index">
+             <td>{{ i + 1 }}</td>
+             <td>{{student.std}}</td>
+             <td>{{student.div | uppercase}}</td>
+             <td>{{student.rollNo}}</td>
+             <td>{{ student.name }}</td>
+             <td>
+                <a [routerLink]="'edit/' + student.std + '/' + student.rollNo + '/' + student.div" class="btn btn-secondary btn-sm btn-border">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <button class="btn btn-danger btn-sm btn-border" (click)="deleteStudent(student.std, student.std, student.div)">Delete</button>
+             </td>
+          </tr>
+       </tbody>
+    </table>
+ </div>

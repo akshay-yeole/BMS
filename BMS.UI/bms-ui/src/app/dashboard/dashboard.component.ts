@@ -3,6 +3,7 @@ import Chart from 'chart.js/auto';
 import { BookCategoryService } from '../core/services/book-category.service';
 import { map } from 'rxjs';
 import { BookService } from '../core/services/book.service';
+import { StudentService } from '../core/services/student.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +18,7 @@ export class DashboardComponent {
   cards: { title: string; content: any; link: string }[] = [];
 
   constructor(
+    private studentService : StudentService,
     private catgeoryService: BookCategoryService,
     private bookService: BookService
   ) {}
@@ -29,22 +31,32 @@ export class DashboardComponent {
     this.catgeoryService
       .getAllCategories()
       .pipe(
-        map((categories) => categories.length) // Map the array to its length
+        map((data) => data.length) // Map the array to its length
       )
       .subscribe((count) => {
         this.categoryCount = count;
         this.updateCards();
       });
 
-      this.bookService
+    this.bookService
       .getAllBooks()
       .pipe(
-        map((books) => books.length) // Map the array to its length
+        map((data) => data.length) // Map the array to its length
       )
       .subscribe((count) => {
         this.booksCount = count;
         this.updateCards();
       });
+
+      this.studentService.getAllStudents()
+      .pipe(
+        map((data) => data.length) // Map the array to its length
+      )
+      .subscribe((count) => {
+        this.studentsCount = count;
+        this.updateCards();
+      });
+;
   }
 
   updateCards(): void {
@@ -54,8 +66,16 @@ export class DashboardComponent {
         content: this.categoryCount,
         link: 'book-categories',
       },
-      { title: 'Books', content: this.booksCount, link: 'books' },
-      { title: 'Students', content: this.studentsCount, link: 'students' },
+      {
+        title: 'Books',
+        content: this.booksCount,
+        link: 'books',
+      },
+      {
+        title: 'Students',
+        content: this.studentsCount,
+        link: 'students',
+      },
       {
         title: 'Transactions',
         content: this.transactionCount,
