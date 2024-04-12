@@ -17,11 +17,11 @@ const routes: Routes = [
     component: BookCategoriesListComponent,
   },
   {
-    path: 'add-category',
+    path: 'book-categories/add',
     component: AddBookCategoryComponent,
   },
   {
-    path: 'edit-category/:id',
+    path: 'book-categories/edit/:id',
     component: UpdateBookCategoryComponent,
   },
   {

@@ -4,7 +4,7 @@
          <h2>Book Categories</h2>
       </div>
       <div class="col text-end">
-         <a routerLink="add-category" class="btn btn-primary btn-border" > Add Category </a>
+         <a routerLink="add" class="btn btn-primary btn-border" > Add Category </a>
       </div>
    </div>
 
@@ -21,7 +21,7 @@
             <td>{{ i + 1 }}</td>
             <td>{{ category.categoryName }}</td>
             <td>
-               <a [routerLink]="'/edit-category/' + category.categoryId" class="btn btn-secondary btn-sm btn-border">Edit</a>
+               <a [routerLink]="'edit/' + category.categoryId" class="btn btn-secondary btn-sm btn-border">Edit</a>
                &nbsp;&nbsp;&nbsp;
                <button class="btn btn-danger btn-sm btn-border" (click)="deleteCagetory(category.categoryId)">Delete</button>
             </td>
