@@ -16,7 +16,7 @@ export class CommonHttpService extends BaseHttpSerrvice {
   }
 
   public sendPostRequest<T>(path: string, data: any): Observable<T> {
-    return this.http.post<T>(path, data, { headers: this.getHeaders() });
+    return this.http.post<T>(path, data);
   }
 
   public sendPutRequest<T>(path: string, data: any): Observable<T> {

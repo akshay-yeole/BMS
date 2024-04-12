@@ -1,9 +1,6 @@
-﻿using AutoMapper;
-using BMS.API.AbstractValidators;
-using BMS.Domain.Contracts;
+﻿using BMS.Domain.Contracts;
 using BMS.Domain.Dto;
 using BMS.Domain.Models;
-using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using StatusCodes = Microsoft.AspNetCore.Http.StatusCodes;
 
@@ -30,7 +27,7 @@ namespace BMS.API.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPost("")]
         [ProducesResponseType(typeof(BookCategoryDto), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
