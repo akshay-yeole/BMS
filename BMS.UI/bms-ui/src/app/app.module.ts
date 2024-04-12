@@ -16,6 +16,7 @@ import { AddBookCategoryComponent } from './book-categories/book-categories-list
 import { UpdateBookCategoryComponent } from './book-categories/book-categories-list/update-book-category/update-book-category.component';
 import { BooksListComponent } from './books/books-list/books-list.component';
 import { AddBookComponent } from './books/books-list/add-book/add-book.component';
+import { UpdateBookComponent } from './books/books-list/update-book/update-book.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import { AddBookComponent } from './books/books-list/add-book/add-book.component
     AddBookCategoryComponent,
     UpdateBookCategoryComponent,
     BooksListComponent,
-    AddBookComponent
+    AddBookComponent,
+    UpdateBookComponent
   ],
   imports: [
     BrowserModule,

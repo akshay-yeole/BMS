@@ -1,0 +1,48 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <h2>Update Book</h2>
+        </div>
+        <div class="col text-end">
+            <a routerLink="" class="btn btn-primary btn-border"> Go Back </a>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row justify-content-left">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form (ngSubmit)="updateBook(book)" #categoryForm="ngForm">
+                            <div class="mb-3">
+                                <label for="bookName" class="form-label">Book Name:</label>
+                                <input type="text" class="form-control" id="bookName" name="bookName"
+                                    [(ngModel)]="book.bookName" placeholder="Enter category name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="author" class="form-label">Author Name:</label>
+                                <input type="text" class="form-control btn-border" id="author" name="author"
+                                    [(ngModel)]="book.author" placeholder="Enter author name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="copiesAvailable" class="form-label">Copies Available :</label>
+                                <input type="number" class="form-control btn-border" id="copiesAvailable" name="copiesAvailable"
+                                    [(ngModel)]="book.copiesAvailable" placeholder="Enter copies Available" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Book Category :</label>
+                                <select class="form-select btn-border" id="category" name="category" [(ngModel)]="book.categoryid" required>
+                                  <ng-container *ngFor="let category of categories">
+                                    <option [value]="category.categoryId">{{ category.categoryName }}</option>
+                                  </ng-container>
+                                </select>
+                              </div>
+                            <button type="submit" class="btn btn-primary btn-border">Save</button>
+                            &nbsp;&nbsp;&nbsp;
+                            <button type="submit" class="btn btn-danger btn-border">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

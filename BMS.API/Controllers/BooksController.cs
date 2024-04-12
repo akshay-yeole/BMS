@@ -36,12 +36,12 @@ namespace BMS.API.Controllers
             return GetResult(books);
         }
 
-        [HttpPost]
+        [HttpPost("")]
         [ProducesResponseType(typeof(BookDto), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> AddBookCategoryAsync(BookDto bookDto)
+        public async Task<IActionResult> AddBookyAsync(BookDto bookDto)
         {
             if (!ModelState.IsValid) 
                 return BadRequest(ModelState); 
@@ -69,6 +69,16 @@ namespace BMS.API.Controllers
         public async Task<IActionResult> DeleteBookCategoryAsync(Guid bookCode)
         {
             var result = await _bookService.DeleteBookAsync(bookCode);
+            return GetResult(result);
+        }
+
+        [HttpGet("{bookCode}")]
+        [ProducesResponseType(typeof(BookDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetBookByBookCodeAsync(Guid bookCode)
+        {
+            var result = await _bookService.GetBookByBookCode(bookCode);
             return GetResult(result);
         }
     }

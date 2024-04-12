@@ -13,7 +13,8 @@
           <tr>
              <th>#</th>
              <th>Book Name</th>
-             <th>Book Category</th>
+             <th>Author</th>
+             <th>Avaliable Copies</th>
              <th>Actions</th>
           </tr>
        </thead>
@@ -21,11 +22,12 @@
           <tr *ngFor="let book of books; let i = index">
              <td>{{ i + 1 }}</td>
              <td>{{ book.bookName }}</td>
-             <td>demo</td>
+             <td>{{book.author}}</td>
+             <td>{{book.copiesAvailable}}</td>
              <td>
-                <a [routerLink]="'edit/' + book.bookId" class="btn btn-secondary btn-sm btn-border">Edit</a>
+                <a [routerLink]="'edit/' + book.bookCode" class="btn btn-secondary btn-sm btn-border">Edit</a>
                 &nbsp;&nbsp;&nbsp;
-                <button class="btn btn-danger btn-sm btn-border" (click)="deleteCagetory(book.bookId)">Delete</button>
+                <button class="btn btn-danger btn-sm btn-border" (click)="deleteCagetory(book.bookCode)">Delete</button>
              </td>
           </tr>
        </tbody>

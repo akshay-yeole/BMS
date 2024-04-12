@@ -1,5 +1,5 @@
 export interface Book {
-  bookId: string;
+  bookCode: string;
   bookName: string;
   copiesAvailable: number;
   author: string;

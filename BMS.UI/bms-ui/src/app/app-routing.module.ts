@@ -7,6 +7,7 @@ import { UpdateBookCategoryComponent } from './book-categories/book-categories-l
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BooksListComponent } from './books/books-list/books-list.component';
 import { AddBookComponent } from './books/books-list/add-book/add-book.component';
+import { UpdateBookComponent } from './books/books-list/update-book/update-book.component';
 
 
 const routes: Routes = [
@@ -36,7 +37,7 @@ const routes: Routes = [
   },
   {
     path: 'books/edit/:id',
-    component: BooksListComponent,
+    component: UpdateBookComponent,
   },
   {
     path:'**', component: NotFoundComponent

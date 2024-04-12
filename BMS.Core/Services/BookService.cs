@@ -74,5 +74,13 @@ namespace BMS.Core.Services
             var allBooks = _mapper.Map<IEnumerable<BookDto>>(books);
             return Result.Ok(allBooks);
         }
+
+        public async Task<Result<BookDto>> GetBookByBookCode(Guid bookCode)
+        {
+            var bookDetails = await _context.Books.Where(x=>x.BookCode == bookCode).FirstOrDefaultAsync();
+            if (bookDetails == null)
+                return Result.Fail<BookDto>(ErrorMessages.BookNotFound, StatusCodes.NotFoundError);
+            return Result.Ok(_mapper.Map<BookDto>(bookDetails));
+        }
     }
 }
