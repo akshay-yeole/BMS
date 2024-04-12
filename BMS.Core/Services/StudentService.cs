@@ -29,12 +29,9 @@ namespace BMS.Core.Services
             return Result.Ok(allStudents);
         }
 
-        public async Task<Result<StudentDto>> GetStudentDetails(int Std, char div, int rollNo)
+        public Student GetStudentDetails(int Std, char div, int rollNo)
         {
-            var studentDetails = await _context.Students.Where(x => x.Std == Std && x.Div == div && x.RollNo == rollNo).FirstOrDefaultAsync();
-            if (studentDetails == null)
-                return Result.Fail<StudentDto>(ErrorMessages.StudentNotFound, StatusCodes.NotFoundError);
-            return Result.Ok(_mapper.Map<StudentDto>(studentDetails));
+            return _context.Students.FirstOrDefault(x => x.Std == Std && x.Div == div && x.RollNo == rollNo);
         }
 
         public async Task<Result<bool>> AddStudentAsync(StudentDto studentDto)
