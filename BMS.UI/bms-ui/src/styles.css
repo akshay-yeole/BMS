@@ -18,4 +18,9 @@
  .main-content {
     padding-top: 0; /* Add some top padding to the main content */
  }
+
+ .row{
+   margin: 0px;
+   padding: 0px;
+ }
  

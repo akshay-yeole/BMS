@@ -1,21 +1,25 @@
-<div class="container-fluid">
-   <div class="row">
-      <app-header></app-header>
-   </div>
+<!-- app.component.html -->
 
+<div class="container-fluid custom-container d-flex flex-column min-vh-100 p-0">
    <div class="row">
-      <!-- Sidebar (navbar) on the left side -->
-      <div class="col-lg-3 col-md-4">
-         <app-sidebar></app-sidebar>
-      </div>
-      
-      <!-- Main Content (dashboard) on the right side -->
-      <div class="col-lg-9 col-md-8 main-content">
-         <app-dashboard></app-dashboard>
-      </div>
+     <!-- Header -->
+     <app-header></app-header>
    </div>
-
-   <div class="row">
-      <app-footer></app-footer>
+ 
+   <div class="row flex-grow-1 ">
+     <!-- Sidebar -->
+     <div class="col-lg-3 col-md-4">
+       <app-sidebar></app-sidebar>
+     </div>
+     
+     <!-- Main Content -->
+     <div class="col-lg-9 col-md-8 main-content">
+       <app-dashboard></app-dashboard>
+     </div>
    </div>
-</div>
+ 
+   <div class="row mt-auto">
+     <!-- Footer -->
+     <app-footer></app-footer>
+   </div>
+ </div>

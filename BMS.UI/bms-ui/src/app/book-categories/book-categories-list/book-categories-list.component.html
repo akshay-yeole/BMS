@@ -4,7 +4,7 @@
          <h2>Book Categories</h2>
       </div>
       <div class="col text-end">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+        <button type="button" class="btn btn-primary btn-border" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
          Add Category
        </button>
       </div>
@@ -23,15 +23,16 @@
             <td>{{ i + 1 }}</td>
             <td>{{ category.categoryName }}</td>
             <td>
-               <button class="btn btn-secondary btn-sm">Edit</button>
+               <button class="btn btn-secondary btn-sm btn-border">Edit</button>
                &nbsp;&nbsp;&nbsp;
-               <button class="btn btn-danger btn-sm">Delete</button>
+               <button class="btn btn-danger btn-sm btn-border">Delete</button>
             </td>
          </tr>
       </tbody>
    </table>
 </div>
 
+<!-- Add Catgeory modal -->
 <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered">
      <div class="modal-content">
@@ -43,15 +44,14 @@
          <form>
            <div class="mb-3">
              <label for="categoryName" class="form-label">Category Name</label>
-             <input type="text" class="form-control" id="categoryName" placeholder="Enter category name" [(ngModel)]="categoryName" name="categoryName" required>
+             <input type="text" class="form-control btn-border" id="categoryName" placeholder="Enter category name" [(ngModel)]="categoryName" name="categoryName" required>
            </div>
            <div class="modal-footer">
-             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-             <button type="button" class="btn btn-primary" (click)="addCategory()">Add Category</button>
+             <button type="button" class="btn btn-danger btn-border" data-bs-dismiss="modal">Cancel</button>
+             <button type="button" class="btn btn-primary btn-border" (click)="addCategory()">Add</button>
            </div>
          </form>
        </div>
      </div>
    </div>
  </div>
- 
