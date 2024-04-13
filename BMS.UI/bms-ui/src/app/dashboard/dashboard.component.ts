@@ -79,7 +79,7 @@ export class DashboardComponent {
       {
         title: 'Transactions',
         content: this.transactionCount,
-        link: 'transaction',
+        link: 'transactions',
       },
     ];
   }

@@ -1,0 +1,33 @@
+<div class="container mt-4">
+    <div class="row">
+       <div class="col">
+          <h2>Transactions</h2>
+       </div>
+       <div class="col text-end">
+          <a routerLink="#" class="btn btn-success btn-border" > Issue Book </a>
+       </div>
+    </div>
+ 
+    <table class="table mt-3">
+       <thead>
+          <tr>
+             <th>#</th>
+             <th>BookCode</th>
+             <th>StudentId</th>
+             <th>IssuedDate</th>
+             <th>ReturnedDate</th>
+             <th>ExpectedReturnedDate</th>
+          </tr>
+       </thead>
+       <tbody>
+          <tr *ngFor="let transaction of transactions; let i = index">
+             <td>{{ i + 1 }}</td>
+             <td>{{transaction.bookCode}}</td>
+             <td>{{transaction.studentId | uppercase}}</td>
+             <td>{{transaction.issuedDate}}</td>
+             <td>{{ transaction.returnedDate }}</td>
+             <td>{{ transaction.expectedReturnedDate }}</td>
+          </tr>
+       </tbody>
+    </table>
+ </div>

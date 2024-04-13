@@ -11,6 +11,7 @@ import { UpdateBookComponent } from './books/books-list/update-book/update-book.
 import { StudentsListComponent } from './students/students-list/students-list.component';
 import { AddStudentComponent } from './students/students-list/add-student/add-student.component';
 import { EditStudentComponent } from './students/students-list/edit-student/edit-student.component';
+import { TransactionListComponent } from './transactions/transaction-list/transaction-list.component';
 
 
 const routes: Routes = [
@@ -53,6 +54,10 @@ const routes: Routes = [
   {
     path:'students/edit/:id/:div/:rollNo',
     component: EditStudentComponent
+  },
+  {
+    path:'transactions',
+    component: TransactionListComponent
   },
   {
     path:'**', component: NotFoundComponent
