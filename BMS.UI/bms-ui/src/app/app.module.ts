@@ -21,6 +21,7 @@ import { StudentsListComponent } from './students/students-list/students-list.co
 import { AddStudentComponent } from './students/students-list/add-student/add-student.component';
 import { EditStudentComponent } from './students/students-list/edit-student/edit-student.component';
 import { TransactionListComponent } from './transactions/transaction-list/transaction-list.component';
+import { IssueBookComponent } from './transactions/transaction-list/issue-book/issue-book.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { TransactionListComponent } from './transactions/transaction-list/transa
     StudentsListComponent,
     AddStudentComponent,
     EditStudentComponent,
-    TransactionListComponent
+    TransactionListComponent,
+    IssueBookComponent
   ],
   imports: [
     BrowserModule,

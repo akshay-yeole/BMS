@@ -7,8 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class StudentService extends CommonHttpService {
-  url = 'https://localhost:7140/api';
-
+  
   getAllStudents(): Observable<Student[]> {
     return this.sendGetRequest<Student[]>(`${this.url}/Students`);
   }

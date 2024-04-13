@@ -7,6 +7,7 @@ import { BaseHttpSerrvice } from './base.http.service';
   providedIn: 'root',
 })
 export class CommonHttpService extends BaseHttpSerrvice {
+  url = 'https://localhost:7140/api';
   constructor(private http: HttpClient) {
     super();
   }

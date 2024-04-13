@@ -20,6 +20,7 @@ namespace BMS.Core.Services
         public async Task<LibraryTransactionDto> AddLibraryTransaction(LibraryTransactionDto libraryTransactionDto)
         {
             var transaction = _mapper.Map<LibraryTransaction>(libraryTransactionDto);
+            transaction.ReturnedDate = null;
             await _context.LibraryTransactions.AddAsync(transaction);
             await _context.SaveChangesAsync();
             return libraryTransactionDto;

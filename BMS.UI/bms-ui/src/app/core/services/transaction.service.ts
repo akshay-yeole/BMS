@@ -4,12 +4,20 @@ import { Observable } from 'rxjs';
 import { Transaction } from '../models/transaction.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TransactionService extends CommonHttpService {
-  url = 'https://localhost:7140/api';
-  
-  getAllTransaction() : Observable<Transaction[]>{
-    return this.sendGetRequest<Transaction[]>(`${this.url}/LibraryTransactions`);
+  getAllTransaction(): Observable<Transaction[]> {
+    return this.sendGetRequest<Transaction[]>(
+      `${this.url}/LibraryTransactions`
+    );
+  }
+
+  issueBook(model: Transaction): Observable<boolean> {
+    console.log(`${this.url}/LibraryTransactions/issue-book`);
+    return this.sendPostRequest<boolean>(
+      `${this.url}/LibraryTransactions/issue-book`,
+      model
+    );
   }
 }

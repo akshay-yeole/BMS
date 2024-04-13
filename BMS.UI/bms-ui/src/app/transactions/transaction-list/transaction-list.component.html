@@ -4,7 +4,9 @@
           <h2>Transactions</h2>
        </div>
        <div class="col text-end">
-          <a routerLink="#" class="btn btn-success btn-border" > Issue Book </a>
+          <a routerLink="issue-book" class="btn btn-success btn-border" > Issue Book </a>
+          &nbsp;&nbsp;&nbsp;
+          <a routerLink="#" class="btn btn-success btn-border" > Return Book </a>
        </div>
     </div>
  
@@ -25,7 +27,7 @@
              <td>{{transaction.bookCode}}</td>
              <td>{{transaction.studentId | uppercase}}</td>
              <td>{{transaction.issuedDate}}</td>
-             <td>{{ transaction.returnedDate }}</td>
+             <td>{{transaction.returnedDate.toString() }}</td>
              <td>{{ transaction.expectedReturnedDate }}</td>
           </tr>
        </tbody>

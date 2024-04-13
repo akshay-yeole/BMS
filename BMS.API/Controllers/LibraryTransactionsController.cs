@@ -31,7 +31,7 @@ namespace BMS.API.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPost("issue-book")]
         [ProducesResponseType(typeof(LibraryTransactionDto), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]

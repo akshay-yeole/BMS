@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BookService extends CommonHttpService {
-  url ="https://localhost:7140/api";
 
   getAllBooks(){
       return this.sendGetRequest<Book[]>(`${this.url}/Books`);

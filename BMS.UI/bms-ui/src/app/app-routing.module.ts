@@ -12,6 +12,7 @@ import { StudentsListComponent } from './students/students-list/students-list.co
 import { AddStudentComponent } from './students/students-list/add-student/add-student.component';
 import { EditStudentComponent } from './students/students-list/edit-student/edit-student.component';
 import { TransactionListComponent } from './transactions/transaction-list/transaction-list.component';
+import { IssueBookComponent } from './transactions/transaction-list/issue-book/issue-book.component';
 
 
 const routes: Routes = [
@@ -58,6 +59,9 @@ const routes: Routes = [
   {
     path:'transactions',
     component: TransactionListComponent
+  },{
+    path:'transactions/issue-book',
+    component: IssueBookComponent
   },
   {
     path:'**', component: NotFoundComponent

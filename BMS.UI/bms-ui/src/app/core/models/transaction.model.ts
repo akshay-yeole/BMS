@@ -1,7 +1,7 @@
 export interface Transaction {
   bookCode: string;
   studentId: string;
-  issuedDate: string;
+  issuedDate: Date;
   returnedDate: string;
-  expectedReturnedDate: string;
+  expectedReturnedDate: Date;
 }
