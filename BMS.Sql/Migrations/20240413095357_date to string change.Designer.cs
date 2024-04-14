@@ -4,6 +4,7 @@ using BMS.Sql.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BMS.Sql.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240413095357_date to string change")]
+    partial class datetostringchange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,15 +76,15 @@ namespace BMS.Sql.Migrations
                     b.Property<Guid>("BookCode")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("ExpectedReturnedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("ExpectedReturnedDate")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("IssuedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("IssuedDate")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("ReturnedDate")
+                    b.Property<string>("ReturnedDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
+                        .HasColumnType("nvarchar(max)")
                         .HasDefaultValueSql("NULL");
 
                     b.Property<Guid>("StudentId")

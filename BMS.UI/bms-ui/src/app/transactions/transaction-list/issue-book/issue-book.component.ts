@@ -11,9 +11,9 @@ export class IssueBookComponent {
   transaction: Transaction = {
     bookCode: '',
     studentId: '',
-    issuedDate: new Date(),
-    returnedDate: '',
-    expectedReturnedDate: new Date(),
+    issuedDate: null,
+    returnedDate: null,
+    expectedReturnedDate: null,
   };
 
   constructor(private transactionService: TransactionService) {}
