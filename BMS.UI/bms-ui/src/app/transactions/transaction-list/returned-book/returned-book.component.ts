@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Transaction } from 'src/app/core/models/transaction.model';
 import { TransactionService } from 'src/app/core/services/transaction.service';
 
@@ -19,7 +19,7 @@ export class ReturnedBookComponent implements OnInit {
     expectedReturnedDate: null,
   };
 
-  constructor(private transactionService: TransactionService, private route : ActivatedRoute) {
+  constructor(private transactionService: TransactionService, private route : ActivatedRoute, private router : Router) {
     
   }
 
@@ -36,6 +36,9 @@ export class ReturnedBookComponent implements OnInit {
   }
 
   ReturnedBook(){
-
+    this.transactionService.returnBook(this.transaction).subscribe(() => {
+      this.router.navigate(['']);
+    });
   }
+
 }

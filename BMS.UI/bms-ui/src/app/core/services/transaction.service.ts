@@ -25,4 +25,11 @@ export class TransactionService extends CommonHttpService {
       model
     );
   }
+
+  returnBook(model: Transaction) : Observable<boolean>{
+    return this.sendPutRequest<boolean>(
+      `${this.url}/LibraryTransactions/return-book/${model.id}`,
+      model
+    );
+  }
 }

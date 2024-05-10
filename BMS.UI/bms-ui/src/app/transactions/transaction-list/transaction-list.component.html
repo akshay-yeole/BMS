@@ -26,7 +26,7 @@
              <td>{{transaction.bookCode}}</td>
              <td>{{transaction.studentId | uppercase}}</td>
              <td>{{transaction.issuedDate | customDate}}</td>
-             <td>{{ transaction.returnedDate && transaction.returnedDate.toString() !== '0001-01-01T00:00:00' ? transaction.returnedDate.toString() : 'NA' }}</td>
+             <td>{{ transaction.returnedDate | customDate }}</td>
              <td>{{ transaction.expectedReturnedDate | customDate}}</td>
              <td>
                <a [routerLink]="'return-book/' + transaction.id" class="btn btn-secondary btn-border" >Return</a>

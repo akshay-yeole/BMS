@@ -16,23 +16,22 @@
                             <div class="mb-3">
                                 <label for="bookCode" class="form-label">BookCode:</label>
                                 <input type="text" class="form-control btn-border" id="bookCode" name="bookCode"
-                                    [(ngModel)]="transaction.bookCode" placeholder="Enter bookCode" required>
+                                    [(ngModel)]="transaction.bookCode" disabled>
                             </div>
                             <div class="mb-3">
                                 <label for="studentId" class="form-label">StudentId:</label>
                                 <input type="text" class="form-control btn-border" id="studentId" name="studentId"
-                                    [(ngModel)]="transaction.studentId" placeholder="Enter studentId" required>
+                                    [(ngModel)]="transaction.studentId" disabled>
                             </div>
                             <div class="mb-3">
                                 <label for="issuedDate" class="form-label">Issued Date:</label>
                                 <input type="date" class="form-control btn-border" id="issuedDate" name="issuedDate"
-                                    [value]="transaction.issuedDate | customDate" placeholder="Enter issuedDate" required>
+                                    [value]="transaction.issuedDate | customDate" disabled>
                             </div>
                             <div class="mb-3">
                                 <label for="expectedReturnedDate" class="form-label">Expected Returned Date:</label>
                                 <input type="date" class="form-control btn-border" id="expectedReturnedDate"
-                                    name="expectedReturnedDate" [value]="transaction.expectedReturnedDate| customDate"
-                                    placeholder="Enter expectedReturnedDate" required>
+                                    name="expectedReturnedDate" [value]="transaction.expectedReturnedDate| customDate" disabled>
                             </div>
                             <div class="mb-3">
                                 <label for="ReturnedDate" class="form-label">Returned Date:</label>
