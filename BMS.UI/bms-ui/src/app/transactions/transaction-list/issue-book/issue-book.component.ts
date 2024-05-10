@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Transaction } from 'src/app/core/models/transaction.model';
 import { TransactionService } from 'src/app/core/services/transaction.service';
 
@@ -17,13 +18,12 @@ export class IssueBookComponent {
     expectedReturnedDate: null,
   };
 
-  constructor(private transactionService: TransactionService) {}
+  constructor(private transactionService: TransactionService,private router : Router) {}
 
   issueBook() {
-    console.log('issue book', this.transaction);
     this.transactionService.issueBook(this.transaction).subscribe(
       (data) => {
-        console.log('data', data);
+        this.router.navigate(['transactions']);
       },
       (err) => {
         console.log(err);

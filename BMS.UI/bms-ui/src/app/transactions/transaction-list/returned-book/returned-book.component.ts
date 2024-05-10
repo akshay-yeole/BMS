@@ -30,7 +30,6 @@ export class ReturnedBookComponent implements OnInit {
 
     this.transactionService.getTransactionById(this.transaction.id).subscribe((data) => {
       this.transaction = data;
-      console.log('get data', data);
     });
 
   }
