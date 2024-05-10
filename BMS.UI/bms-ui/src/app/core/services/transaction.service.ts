@@ -13,8 +13,13 @@ export class TransactionService extends CommonHttpService {
     );
   }
 
+  getTransactionById(transactionId : string){
+    return this.sendGetRequest<Transaction>(
+      `${this.url}/LibraryTransactions/${transactionId}`
+    );
+}
+
   issueBook(model: Transaction): Observable<boolean> {
-    console.log(`${this.url}/LibraryTransactions/issue-book`);
     return this.sendPostRequest<boolean>(
       `${this.url}/LibraryTransactions/issue-book`,
       model

@@ -22,6 +22,8 @@ import { AddStudentComponent } from './students/students-list/add-student/add-st
 import { EditStudentComponent } from './students/students-list/edit-student/edit-student.component';
 import { TransactionListComponent } from './transactions/transaction-list/transaction-list.component';
 import { IssueBookComponent } from './transactions/transaction-list/issue-book/issue-book.component';
+import { ReturnedBookComponent } from './transactions/transaction-list/returned-book/returned-book.component';
+import { CustomDatePipe } from './core/shared/custom-date.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +42,9 @@ import { IssueBookComponent } from './transactions/transaction-list/issue-book/i
     AddStudentComponent,
     EditStudentComponent,
     TransactionListComponent,
-    IssueBookComponent
+    IssueBookComponent,
+    ReturnedBookComponent,
+    CustomDatePipe
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { TransactionService } from 'src/app/core/services/transaction.service';
 })
 export class IssueBookComponent {
   transaction: Transaction = {
+    id:'',
     bookCode: '',
     studentId: '',
     issuedDate: null,

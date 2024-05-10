@@ -13,6 +13,7 @@ import { AddStudentComponent } from './students/students-list/add-student/add-st
 import { EditStudentComponent } from './students/students-list/edit-student/edit-student.component';
 import { TransactionListComponent } from './transactions/transaction-list/transaction-list.component';
 import { IssueBookComponent } from './transactions/transaction-list/issue-book/issue-book.component';
+import { ReturnedBookComponent } from './transactions/transaction-list/returned-book/returned-book.component';
 
 
 const routes: Routes = [
@@ -62,6 +63,9 @@ const routes: Routes = [
   },{
     path:'transactions/issue-book',
     component: IssueBookComponent
+  },{
+    path:'transactions/return-book/:id',
+    component: ReturnedBookComponent
   },
   {
     path:'**', component: NotFoundComponent

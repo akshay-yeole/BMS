@@ -20,6 +20,4 @@ export class TransactionListComponent implements OnInit {
     alert(err.message);
   });
   }
-
-
 }

@@ -1,0 +1,52 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <h2>Return Book</h2>
+        </div>
+        <div class="col text-end">
+            <a routerLink="/transactions" class="btn btn-primary btn-border"> Go Back </a>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <div class="row justify-content-left">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form (ngSubmit)="ReturnedBook()" #categoryForm="ngForm">
+                            <div class="mb-3">
+                                <label for="bookCode" class="form-label">BookCode:</label>
+                                <input type="text" class="form-control btn-border" id="bookCode" name="bookCode"
+                                    [(ngModel)]="transaction.bookCode" placeholder="Enter bookCode" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="studentId" class="form-label">StudentId:</label>
+                                <input type="text" class="form-control btn-border" id="studentId" name="studentId"
+                                    [(ngModel)]="transaction.studentId" placeholder="Enter studentId" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="issuedDate" class="form-label">Issued Date:</label>
+                                <input type="date" class="form-control btn-border" id="issuedDate" name="issuedDate"
+                                    [value]="transaction.issuedDate | customDate" placeholder="Enter issuedDate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="expectedReturnedDate" class="form-label">Expected Returned Date:</label>
+                                <input type="date" class="form-control btn-border" id="expectedReturnedDate"
+                                    name="expectedReturnedDate" [value]="transaction.expectedReturnedDate| customDate"
+                                    placeholder="Enter expectedReturnedDate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="ReturnedDate" class="form-label">Returned Date:</label>
+                                <input type="date" class="form-control btn-border" id="ReturnedDate"
+                                    name="ReturnedDate" [(ngModel)]="transaction.returnedDate"
+                                    placeholder="Enter ReturnedDate" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-border">Update</button>
+                            &nbsp;&nbsp;&nbsp;
+                            <button type="submit" class="btn btn-danger btn-border">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

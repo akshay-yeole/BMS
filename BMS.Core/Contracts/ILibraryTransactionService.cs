@@ -1,6 +1,5 @@
 ﻿
 using BMS.Domain.Dto;
-using BMS.Domain.Models;
 
 namespace BMS.Core.Contracts
 {
@@ -10,5 +9,6 @@ namespace BMS.Core.Contracts
         Task<LibraryTransactionDto> AddLibraryTransaction(LibraryTransactionDto libraryTransactionDto);
         Task UpdateTransactionAsync(LibraryTransactionDto transactionDto, Guid transactionId);
         Task DeleteTransactionAsync(Guid transactionId);
+        Task<LibraryTransactionDto> GetLibraryTransactionById(Guid transactionId);
     }
 }

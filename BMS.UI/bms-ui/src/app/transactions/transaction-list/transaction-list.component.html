@@ -5,8 +5,6 @@
        </div>
        <div class="col text-end">
           <a routerLink="issue-book" class="btn btn-success btn-border" > Issue Book </a>
-          &nbsp;&nbsp;&nbsp;
-          <a routerLink="#" class="btn btn-success btn-border" > Return Book </a>
        </div>
     </div>
  
@@ -19,6 +17,7 @@
              <th>IssuedDate</th>
              <th>ReturnedDate</th>
              <th>ExpectedReturnedDate</th>
+             <th>Action</th>
           </tr>
        </thead>
        <tbody>
@@ -26,9 +25,12 @@
              <td>{{ i + 1 }}</td>
              <td>{{transaction.bookCode}}</td>
              <td>{{transaction.studentId | uppercase}}</td>
-             <td>{{transaction.issuedDate}}</td>
+             <td>{{transaction.issuedDate | customDate}}</td>
              <td>{{ transaction.returnedDate && transaction.returnedDate.toString() !== '0001-01-01T00:00:00' ? transaction.returnedDate.toString() : 'NA' }}</td>
-             <td>{{ transaction.expectedReturnedDate }}</td>
+             <td>{{ transaction.expectedReturnedDate | customDate}}</td>
+             <td>
+               <a [routerLink]="'return-book/' + transaction.id" class="btn btn-secondary btn-border" >Return</a>
+             </td>
           </tr>
        </tbody>
     </table>

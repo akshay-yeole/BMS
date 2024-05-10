@@ -1,4 +1,5 @@
 export interface Transaction {
+  id:string;
   bookCode: string;
   studentId: string;
   issuedDate: Date | null;

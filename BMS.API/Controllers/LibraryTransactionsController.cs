@@ -31,6 +31,19 @@ namespace BMS.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("{transactionId}")]
+        [ProducesResponseType(typeof(LibraryTransactionDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetLibraryTransactionById(Guid transactionId)
+        {
+            var result = await _transactionService.GetLibraryTransactionById(transactionId);
+            if (result == null)
+                return NotFound();
+            return Ok(result);
+        }
+
         [HttpPost("issue-book")]
         [ProducesResponseType(typeof(LibraryTransactionDto), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
@@ -44,7 +57,7 @@ namespace BMS.API.Controllers
             return Ok(result);
         }
 
-        [HttpPut("{transactionId}")]
+        [HttpPut("return-book/{transactionId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]

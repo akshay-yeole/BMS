@@ -40,6 +40,12 @@ namespace BMS.Core.Services
             return _mapper.Map<IEnumerable<LibraryTransactionDto>>(trasactions);
         }
 
+        public async Task<LibraryTransactionDto> GetLibraryTransactionById(Guid transactionId)
+        {
+            var isTransactionExists =  await _context.LibraryTransactions.Where(x => x.Id == transactionId).FirstOrDefaultAsync();
+            return _mapper.Map<LibraryTransactionDto>(isTransactionExists);
+        }
+
         public async Task UpdateTransactionAsync(LibraryTransactionDto transactionDto, Guid transactionId)
         {
             var isTransactionExists = await _context.LibraryTransactions.Where(x=>x.Id == transactionId).FirstOrDefaultAsync();
