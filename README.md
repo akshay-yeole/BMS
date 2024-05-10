@@ -28,6 +28,14 @@ This functionality allows users to retrieve information about all books that bel
 
 This feature enables users to fetch details of students based on specific criteria such as standard (grade) and division. For instance, users can input the standard (e.g., 9th grade) and division (e.g., A, B, C) to retrieve a list of students belonging to that specific class segment.
 
+### 8. Book Returned by Student Entry
+
+When a student returns a book, librarians use this feature to record the return of the book. The entry in the Libtransactions table is updated with the return date, and the book is made available for other students to borrow.
+
+### 9. Book Returned by Student Entry
+
+When a student returns a book, librarians use this feature to record the return of the book. The entry in the Libtransactions table is updated with the return date, and the book is made available for other students to borrow.
+
 ## Implementation Notes
 
 - Use appropriate forms or input fields in the user interface for adding books, categories, and students.
