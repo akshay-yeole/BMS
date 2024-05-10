@@ -4,6 +4,7 @@ import { BookCategoryService } from '../core/services/book-category.service';
 import { map } from 'rxjs';
 import { BookService } from '../core/services/book.service';
 import { StudentService } from '../core/services/student.service';
+import { TransactionService } from '../core/services/transaction.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +21,8 @@ export class DashboardComponent {
   constructor(
     private studentService : StudentService,
     private catgeoryService: BookCategoryService,
-    private bookService: BookService
+    private bookService: BookService,
+    private transactionService : TransactionService
   ) {}
 
   ngOnInit(): void {
@@ -56,8 +58,14 @@ export class DashboardComponent {
         this.studentsCount = count;
         this.updateCards();
       });
-;
-  }
+  
+      this.transactionService.getAllTransaction().pipe(
+        map((data)=>data.length)
+      ).subscribe((count)=>{
+        this.transactionCount =count;
+        this.updateCards();
+      });
+    }
 
   updateCards(): void {
     this.cards = [

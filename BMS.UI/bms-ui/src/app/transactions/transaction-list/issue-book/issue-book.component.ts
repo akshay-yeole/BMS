@@ -9,17 +9,18 @@ import { TransactionService } from 'src/app/core/services/transaction.service';
 })
 export class IssueBookComponent {
   transaction: Transaction = {
-    id:'',
+    id:'00000000-0000-0000-0000-000000000000',
     bookCode: '',
     studentId: '',
     issuedDate: null,
-    returnedDate: null,
+    returnedDate: new Date(1, 0, 1),
     expectedReturnedDate: null,
   };
 
   constructor(private transactionService: TransactionService) {}
 
   issueBook() {
+    console.log('issue book', this.transaction);
     this.transactionService.issueBook(this.transaction).subscribe(
       (data) => {
         console.log('data', data);

@@ -37,7 +37,7 @@ export class ReturnedBookComponent implements OnInit {
 
   ReturnedBook(){
     this.transactionService.returnBook(this.transaction).subscribe(() => {
-      this.router.navigate(['']);
+      this.router.navigate(['transactions']);
     });
   }
 
